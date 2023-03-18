@@ -1,10 +1,13 @@
 {
   "domain": "tylo",
   "name": "Tylo-Helo integration",
-  "codeowners": [],
+  "codeowners": ["@MrCircuit"],
   "dependencies": [],
   "documentation": "https://github.com/MrCircuit/hass-tylo",
-  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/MrCircuit/hass-tylo/issues",
+  "integration_type": "hub",
+  "config_flow": true,
+  "iot_class": "local_push",
   "requirements": [],
   "version": "0.1.0"
 }

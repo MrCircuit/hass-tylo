@@ -1,6 +1,6 @@
 {
   "domain": "tylo",
-  "name": "Tylo-Helo integration",
+  "name": "Tylö-Helo Sauna",
   "codeowners": ["@MrCircuit"],
   "dependencies": [],
   "documentation": "https://github.com/MrCircuit/hass-tylo",
@@ -8,6 +8,7 @@
   "integration_type": "hub",
   "config_flow": true,
   "iot_class": "local_push",
-  "requirements": [],
-  "version": "0.1.0"
+  "requirements": ["pyserial", "crc"],
+  "version": "0.1.0",
+  "quality_scale": "silver"
 }

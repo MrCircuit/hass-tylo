@@ -1,130 +1,151 @@
-"""A demonstration 'hub' that connects several devices."""
+"""Hub for Tylö-Helo sauna integration."""
 from __future__ import annotations
 
-# In a real implementation, this would be in an external library that's on PyPI.
-# The PyPI package needs to be included in the `requirements` section of manifest.json
-# See https://developers.home-assistant.io/docs/creating_integration_manifest
-# for more information.
-# This dummy hub always returns 3 rollers.
 import asyncio
-import random
+import logging
+from typing import Callable
 
 from homeassistant.core import HomeAssistant
 
+from .protocol import TyloProtocolHandler
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class Hub:
-    """Dummy hub for Hello World example."""
+    """Hub for Tylö-Helo sauna integration."""
 
-    manufacturer = "Demonstration Corp"
-
-    def __init__(self, hass: HomeAssistant, host: str) -> None:
-        """Init dummy hub."""
-        self._host = host
+    def __init__(self, hass: HomeAssistant, host: str, port: str) -> None:
+        """Initialize the hub."""
         self._hass = hass
-        self._name = host
-        self._id = host.lower()
-        self.rollers = [
-            Roller(f"{self._id}_1", f"{self._name} 1", self),
-            Roller(f"{self._id}_2", f"{self._name} 2", self),
-            Roller(f"{self._id}_3", f"{self._name} 3", self),
-        ]
-        self.online = True
+        self._host = host
+        self._port = port
+        self._id = f"tylo_{host.replace('.', '_')}"
+        self._callbacks: set[Callable[[], None]] = set()
+        self._protocol = TyloProtocolHandler(port)
+        self._monitoring_task: asyncio.Task | None = None
+        
+        # Register protocol callback
+        self._protocol.register_callback("state_change", self._on_protocol_update)
 
     @property
     def hub_id(self) -> str:
-        """ID for dummy hub."""
+        """Return hub ID."""
         return self._id
+
+    @property
+    def online(self) -> bool:
+        """Return if hub is online."""
+        return self._protocol.is_connected
+
+    @property
+    def heater_on(self) -> bool:
+        """Return if heater is on."""
+        return self._protocol.heater_on
+
+    @property
+    def light_on(self) -> bool:
+        """Return if light is on."""
+        return self._protocol.light_on
+
+    @property
+    def ready(self) -> bool:
+        """Return if sauna is ready."""
+        return self._protocol.ready
+
+    @property
+    def temperature_actual(self) -> float | None:
+        """Return actual temperature."""
+        return self._protocol.temperature_actual
+
+    @property
+    def temperature_set(self) -> float | None:
+        """Return set temperature."""
+        return self._protocol.temperature_set
+
+    @property
+    def bathing_time(self) -> int | None:
+        """Return remaining bathing time in minutes."""
+        return self._protocol.bathing_time
+
+    @property
+    def uptime(self) -> int | None:
+        """Return uptime in minutes."""
+        return self._protocol.uptime
 
     async def test_connection(self) -> bool:
-        """Test connectivity to the Dummy hub is OK."""
-        await asyncio.sleep(1)
-        return True
+        """Test connectivity to the sauna controller."""
+        try:
+            _LOGGER.debug("Testing connection to %s on %s", self._host, self._port)
+            success = await self._protocol.connect()
+            if success:
+                # Start monitoring in background
+                self._monitoring_task = self._hass.async_create_task(
+                    self._protocol.start_monitoring()
+                )
+                _LOGGER.info("Successfully connected and started monitoring")
+            return success
+        except Exception as err:
+            _LOGGER.error("Connection test failed: %s", err)
+            return False
 
+    async def set_heater(self, state: bool) -> None:
+        """Toggle heater state."""
+        if not self.online:
+            _LOGGER.error("Cannot set heater: not connected")
+            return
+        
+        # Only toggle if state is different
+        if state != self.heater_on:
+            _LOGGER.debug("Toggling heater (current: %s, target: %s)", self.heater_on, state)
+            await self._protocol.toggle_heater()
 
-class Roller:
-    """Dummy roller (device for HA) for Hello World example."""
-
-    def __init__(self, rollerid: str, name: str, hub: Hub) -> None:
-        """Init dummy roller."""
-        self._id = rollerid
-        self.hub = hub
-        self.name = name
-        self._callbacks = set()
-        self._loop = asyncio.get_event_loop()
-        self._target_position = 100
-        self._current_position = 100
-        # Reports if the roller is moving up or down.
-        # >0 is up, <0 is down. This very much just for demonstration.
-        self.moving = 0
-
-        # Some static information about this device
-        self.firmware_version = f"0.0.{random.randint(1, 9)}"
-        self.model = "Test Device"
-
-    @property
-    def roller_id(self) -> str:
-        """Return ID for roller."""
-        return self._id
-
-    @property
-    def position(self):
-        """Return position for roller."""
-        return self._current_position
-
-    async def set_position(self, position: int) -> None:
-        """
-        Set dummy cover to the given position.
-
-        State is announced a random number of seconds later.
-        """
-        self._target_position = position
-
-        # Update the moving status, and broadcast the update
-        self.moving = position - 50
-        await self.publish_updates()
-
-        self._loop.create_task(self.delayed_update())
-
-    async def delayed_update(self) -> None:
-        """Publish updates, with a random delay to emulate interaction with device."""
-        await asyncio.sleep(random.randint(1, 10))
-        self.moving = 0
-        await self.publish_updates()
+    async def set_light(self, state: bool) -> None:
+        """Toggle light state."""
+        if not self.online:
+            _LOGGER.error("Cannot set light: not connected")
+            return
+        
+        # Only toggle if state is different
+        if state != self.light_on:
+            _LOGGER.debug("Toggling light (current: %s, target: %s)", self.light_on, state)
+            await self._protocol.toggle_light()
 
     def register_callback(self, callback: Callable[[], None]) -> None:
-        """Register callback, called when Roller changes state."""
+        """Register callback for state changes."""
         self._callbacks.add(callback)
 
     def remove_callback(self, callback: Callable[[], None]) -> None:
         """Remove previously registered callback."""
         self._callbacks.discard(callback)
 
-    # In a real implementation, this library would call it's call backs when it was
-    # notified of any state changeds for the relevant device.
-    async def publish_updates(self) -> None:
-        """Schedule call all registered callbacks."""
-        self._current_position = self._target_position
+    def _on_protocol_update(self, protocol: TyloProtocolHandler) -> None:
+        """Handle protocol state updates."""
+        _LOGGER.debug("Protocol state updated, notifying %d callbacks", len(self._callbacks))
+        self._publish_updates()
+
+    def _publish_updates(self) -> None:
+        """Notify all registered callbacks of state changes."""
         for callback in self._callbacks:
-            callback()
+            try:
+                callback()
+            except Exception as err:
+                _LOGGER.error("Error in callback: %s", err)
 
-    @property
-    def online(self) -> float:
-        """Roller is online."""
-        # The dummy roller is offline about 10% of the time. Returns True if online,
-        # False if offline.
-        return random.random() > 0.1
+    async def async_close(self) -> None:
+        """Close the hub connection."""
+        _LOGGER.debug("Closing hub connection")
+        
+        # Cancel monitoring task
+        if self._monitoring_task and not self._monitoring_task.done():
+            self._monitoring_task.cancel()
+            try:
+                await self._monitoring_task
+            except asyncio.CancelledError:
+                pass
+        
+        # Disconnect protocol
+        await self._protocol.disconnect()
+        _LOGGER.debug("Hub connection closed")
 
-    @property
-    def battery_level(self) -> int:
-        """Battery level as a percentage."""
-        return random.randint(0, 100)
 
-    @property
-    def battery_voltage(self) -> float:
-        """Return a random voltage roughly that of a 12v battery."""
-        return round(random.random() * 3 + 10, 2)
-
-    @property
-    def illuminance(self) -> int:
-        """Return a sample illuminance in lux."""
-        return random.randint(0, 500)

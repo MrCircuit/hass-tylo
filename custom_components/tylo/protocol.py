@@ -229,11 +229,9 @@ class TyloProtocolHandler:
                     )
                     
                     if len(frame) > 0:
-                        _LOGGER.debug("Received frame: %s", frame.hex())
-                        if frame[0] == 0x98:  # SOF marker
-                            await self._handle_frame(frame)
-                        else:
-                            _LOGGER.debug("Frame doesn't start with SOF marker: 0x%02x", frame[0])
+                        _LOGGER.debug("Received raw data: %s", frame.hex())
+                        # Split multiple concatenated frames
+                        await self._process_raw_data(frame)
                     else:
                         # No data received, small sleep to prevent busy loop
                         await asyncio.sleep(0.1)
@@ -295,6 +293,39 @@ class TyloProtocolHandler:
         escaped.append(0x9c)  # EOF
         return bytes(escaped)
 
+    async def _process_raw_data(self, data: bytes) -> None:
+        """Process raw data and extract individual frames."""
+        try:
+            # Find all frame boundaries (SOF = 0x98, EOF = 0x9c)
+            frames = []
+            start = 0
+            
+            while start < len(data):
+                # Find next SOF marker
+                sof_pos = data.find(0x98, start)
+                if sof_pos == -1:
+                    break
+                    
+                # Find corresponding EOF marker
+                eof_pos = data.find(0x9c, sof_pos + 1)
+                if eof_pos == -1:
+                    break
+                    
+                # Extract complete frame including SOF and EOF
+                frame = data[sof_pos:eof_pos + 1]
+                if len(frame) >= 4:  # Minimum frame size
+                    frames.append(frame)
+                    
+                start = eof_pos + 1
+            
+            # Process each complete frame
+            for frame in frames:
+                _LOGGER.debug("Processing individual frame: %s", frame.hex())
+                await self._handle_frame(frame)
+                
+        except Exception as err:
+            _LOGGER.error("Error processing raw data: %s", err)
+
     async def _handle_frame(self, frame: bytes) -> None:
         """Handle received frame."""
         try:
@@ -308,10 +339,11 @@ class TyloProtocolHandler:
                 return
                 
             if self._validate_crc(packet):
-                _LOGGER.debug("CRC validation passed")
+                _LOGGER.debug("CRC validation passed for frame: %s", frame.hex())
                 await self._handle_packet(packet[:-2])  # Remove CRC
             else:
-                _LOGGER.warning("CRC error in frame: %s", frame.hex())
+                # Show unescaped packet for debugging
+                _LOGGER.warning("CRC error in frame: %s (unescaped: %s)", frame.hex(), packet.hex())
         except Exception as err:
             _LOGGER.error("Error handling frame %s: %s", frame.hex(), err)
             import traceback

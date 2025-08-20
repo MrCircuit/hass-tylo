@@ -1,0 +1,21 @@
+# Test configuration for Tylö integration
+default_config:
+
+# Basic config
+homeassistant:
+  name: "Tylö Test"
+  latitude: 59.3293
+  longitude: 18.0686
+  elevation: 0
+  unit_system: metric
+  time_zone: "Europe/Stockholm"
+
+# HTTP server configuration
+http:
+  server_port: 8124
+
+# Logger for debugging
+logger:
+  default: info
+  logs:
+    custom_components.tylo: debug

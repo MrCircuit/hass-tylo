@@ -1,0 +1,15 @@
+services:
+  homeassistant-test:
+    container_name: ha-tylo-test
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./test-config:/config
+      - ./custom_components:/config/custom_components
+    restart: unless-stopped
+    privileged: true  # Required for device access
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - "8124:8123"
+    devices:
+      - /dev:/dev  # Map devices for serial port access (Linux/WSL only)

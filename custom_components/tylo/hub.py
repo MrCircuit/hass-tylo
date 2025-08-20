@@ -76,15 +76,23 @@ class Hub:
     async def test_connection(self) -> bool:
         """Test connectivity to the sauna controller."""
         try:
-            _LOGGER.debug("Testing connection to %s on %s", self._host, self._port)
+            _LOGGER.error("STEP 1: Starting test_connection to %s on %s", self._host, self._port)
+            _LOGGER.error("STEP 2: About to call protocol.connect()")
             success = await self._protocol.connect()
+            _LOGGER.error("STEP 3: protocol.connect() returned: %s", success)
             if success:
-                _LOGGER.info("Successfully connected to sauna controller")
+                _LOGGER.error("STEP 4: Connection successful, about to disconnect")
                 # Disconnect after test - we'll reconnect when integration is setup
                 await self._protocol.disconnect()
+                _LOGGER.error("STEP 5: Disconnection completed")
+            else:
+                _LOGGER.error("STEP 4: Connection failed")
+            _LOGGER.error("STEP 6: Returning success: %s", success)
             return success
         except Exception as err:
-            _LOGGER.error("Connection test failed: %s", err)
+            _LOGGER.error("STEP ERROR: Connection test failed: %s", err)
+            import traceback
+            _LOGGER.error("STEP ERROR: Traceback: %s", traceback.format_exc())
             return False
 
     async def initialize(self) -> bool:

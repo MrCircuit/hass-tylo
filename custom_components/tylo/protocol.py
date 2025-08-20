@@ -176,22 +176,26 @@ class TyloProtocolHandler:
 
     async def connect(self) -> bool:
         """Connect to the serial port."""
+        _LOGGER.error("PROTOCOL CONNECT: Starting connect to %s, mock_mode=%s", self._port, self._mock_mode)
+        
         if self._mock_mode:
-            _LOGGER.info("Mock mode enabled - simulating connection to %s", self._port)
+            _LOGGER.error("PROTOCOL CONNECT: Mock mode - creating MockSerial")
             self._serial = MockSerial()
+            _LOGGER.error("PROTOCOL CONNECT: Mock mode setup complete")
             return True
             
         try:
+            _LOGGER.error("PROTOCOL CONNECT: About to create serial.Serial for %s", self._port)
             self._serial = serial.Serial(
                 self._port,
                 self._baudrate,
                 timeout=1,
                 parity=serial.PARITY_EVEN
             )
-            _LOGGER.info("Connected to %s at %d baud", self._port, self._baudrate)
+            _LOGGER.error("PROTOCOL CONNECT: Serial port opened successfully")
             return True
         except Exception as err:
-            _LOGGER.error("Failed to connect to %s: %s", self._port, err)
+            _LOGGER.error("PROTOCOL CONNECT: Failed to connect to %s: %s", self._port, err)
             self._serial = None
             return False
 

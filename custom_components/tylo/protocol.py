@@ -218,13 +218,25 @@ class TyloProtocolHandler:
                     await asyncio.sleep(1.0)
                     continue
                     
-                # Read until EOF marker
-                frame = self._serial.read_until(bytes.fromhex('9c'))
-                if len(frame) > 0 and frame[0] == 0x98:  # SOF marker
-                    await self._handle_frame(frame)
+                # Read until EOF marker with timeout protection
+                try:
+                    frame = self._serial.read_until(bytes.fromhex('9c'))
+                    if len(frame) > 0:
+                        _LOGGER.debug("Received frame: %s", frame.hex())
+                        if frame[0] == 0x98:  # SOF marker
+                            await self._handle_frame(frame)
+                        else:
+                            _LOGGER.debug("Frame doesn't start with SOF marker: 0x%02x", frame[0])
+                    else:
+                        # No data received, small sleep to prevent busy loop
+                        await asyncio.sleep(0.1)
+                except Exception as frame_err:
+                    _LOGGER.error("Error processing frame: %s", frame_err)
+                    await asyncio.sleep(0.1)
+                    
             except Exception as err:
-                _LOGGER.error("Error reading frame: %s", err)
-                await asyncio.sleep(0.1)
+                _LOGGER.error("Error in monitoring loop: %s", err)
+                await asyncio.sleep(1.0)
 
     async def send_command(self, command: int, data: int = 0) -> bool:
         """Send a command to the sauna controller."""
@@ -279,13 +291,24 @@ class TyloProtocolHandler:
     async def _handle_frame(self, frame: bytes) -> None:
         """Handle received frame."""
         try:
+            _LOGGER.debug("Processing frame: %s", frame.hex())
+            
             packet = self._unescape_frame(frame)
+            _LOGGER.debug("Unescaped packet: %s", packet.hex())
+            
+            if len(packet) < 2:
+                _LOGGER.warning("Packet too short: %s", packet.hex())
+                return
+                
             if self._validate_crc(packet):
+                _LOGGER.debug("CRC validation passed")
                 await self._handle_packet(packet[:-2])  # Remove CRC
             else:
                 _LOGGER.warning("CRC error in frame: %s", frame.hex())
         except Exception as err:
-            _LOGGER.error("Error handling frame: %s", err)
+            _LOGGER.error("Error handling frame %s: %s", frame.hex(), err)
+            import traceback
+            _LOGGER.error("Traceback: %s", traceback.format_exc())
 
     def _unescape_frame(self, frame: bytes) -> bytearray:
         """Unescape frame data."""

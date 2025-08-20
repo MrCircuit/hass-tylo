@@ -1,0 +1,19 @@
+services:
+  homeassistant-test:
+    container_name: ha-tylo-test
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./test-config:/config
+      - ./custom_components:/config/custom_components
+      - /run/udev:/run/udev:ro  # For device detection
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - "8124:8123"
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0  # Map the USB-to-RS485 adapter
+    # Alternative device mapping if ttyUSB0 doesn't work:
+    # devices:
+    #   - /dev/ttyACM0:/dev/ttyACM0

@@ -1,240 +1,280 @@
-2025-08-20 21:01:12.354 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration tylo which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2025-08-20 21:01:13.010 INFO (MainThread) [homeassistant.setup] Setting up system_log
-2025-08-20 21:01:13.010 INFO (MainThread) [homeassistant.setup] Setting up http
-2025-08-20 21:01:13.052 INFO (MainThread) [homeassistant.setup] Setup of domain logger took 0.04 seconds
-2025-08-20 21:01:13.052 INFO (MainThread) [homeassistant.setup] Setup of domain system_log took 0.04 seconds
-2025-08-20 21:01:13.053 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.04 seconds
-2025-08-20 21:01:13.053 INFO (MainThread) [homeassistant.setup] Setting up websocket_api
-2025-08-20 21:01:13.053 INFO (MainThread) [homeassistant.setup] Setup of domain websocket_api took 0.00 seconds
-2025-08-20 21:01:13.058 INFO (MainThread) [homeassistant.setup] Setting up network
-2025-08-20 21:01:13.060 INFO (MainThread) [homeassistant.setup] Setup of domain network took 0.00 seconds
-2025-08-20 21:01:13.060 INFO (MainThread) [homeassistant.bootstrap] Setting up stage frontend: {'frontend'}; already set up: {}
-Dependencies: {'device_automation', 'api', 'file_upload', 'auth', 'lovelace', 'config', 'search', 'diagnostics', 'onboarding', 'repairs'}; already set up: {'system_log', 'http', 'websocket_api'}
-2025-08-20 21:01:13.060 INFO (MainThread) [homeassistant.setup] Setting up device_automation
-2025-08-20 21:01:13.060 INFO (MainThread) [homeassistant.setup] Setup of domain device_automation took 0.00 seconds
-2025-08-20 21:01:13.060 INFO (MainThread) [homeassistant.setup] Setting up api
-2025-08-20 21:01:13.061 INFO (MainThread) [homeassistant.setup] Setup of domain api took 0.00 seconds
-2025-08-20 21:01:13.061 INFO (MainThread) [homeassistant.setup] Setting up auth
-2025-08-20 21:01:13.062 INFO (MainThread) [homeassistant.setup] Setup of domain auth took 0.00 seconds
-2025-08-20 21:01:13.062 INFO (MainThread) [homeassistant.setup] Setting up config
-2025-08-20 21:01:13.065 INFO (MainThread) [homeassistant.setup] Setup of domain config took 0.00 seconds
-2025-08-20 21:01:13.066 INFO (MainThread) [homeassistant.setup] Setting up diagnostics
-2025-08-20 21:01:13.066 INFO (MainThread) [homeassistant.setup] Setup of domain diagnostics took 0.00 seconds
-2025-08-20 21:01:13.066 INFO (MainThread) [homeassistant.setup] Setting up file_upload
-2025-08-20 21:01:13.066 INFO (MainThread) [homeassistant.setup] Setup of domain file_upload took 0.00 seconds
-2025-08-20 21:01:13.067 INFO (MainThread) [homeassistant.setup] Setting up onboarding
-2025-08-20 21:01:13.067 INFO (MainThread) [homeassistant.setup] Setting up repairs
-2025-08-20 21:01:13.067 INFO (MainThread) [homeassistant.setup] Setup of domain repairs took 0.00 seconds
-2025-08-20 21:01:13.067 INFO (MainThread) [homeassistant.setup] Setting up search
-2025-08-20 21:01:13.067 INFO (MainThread) [homeassistant.setup] Setup of domain search took 0.00 seconds
-2025-08-20 21:01:13.073 INFO (MainThread) [homeassistant.setup] Setup of domain onboarding took 0.01 seconds
-2025-08-20 21:01:13.074 INFO (MainThread) [homeassistant.setup] Setting up lovelace
-2025-08-20 21:01:13.075 INFO (MainThread) [homeassistant.setup] Setup of domain lovelace took 0.00 seconds
-2025-08-20 21:01:13.081 INFO (MainThread) [homeassistant.setup] Setting up frontend
-2025-08-20 21:01:13.089 INFO (MainThread) [homeassistant.setup] Setup of domain frontend took 0.01 seconds
-2025-08-20 21:01:13.089 INFO (MainThread) [homeassistant.bootstrap] Setting up stage recorder: {'recorder'}; already set up: {}
+2025-08-20 21:03:15.968 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration tylo which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2025-08-20 21:03:16.648 INFO (MainThread) [homeassistant.setup] Setting up http
+2025-08-20 21:03:16.648 INFO (MainThread) [homeassistant.setup] Setting up system_log
+2025-08-20 21:03:16.700 INFO (MainThread) [homeassistant.setup] Setup of domain logger took 0.05 seconds
+2025-08-20 21:03:16.700 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.05 seconds
+2025-08-20 21:03:16.700 INFO (MainThread) [homeassistant.setup] Setup of domain system_log took 0.05 seconds
+2025-08-20 21:03:16.700 INFO (MainThread) [homeassistant.setup] Setting up websocket_api
+2025-08-20 21:03:16.700 INFO (MainThread) [homeassistant.setup] Setup of domain websocket_api took 0.00 seconds
+2025-08-20 21:03:16.706 INFO (MainThread) [homeassistant.setup] Setting up network
+2025-08-20 21:03:16.709 INFO (MainThread) [homeassistant.setup] Setup of domain network took 0.00 seconds
+2025-08-20 21:03:16.709 INFO (MainThread) [homeassistant.bootstrap] Setting up stage frontend: {'frontend'}; already set up: {}
+Dependencies: {'search', 'auth', 'lovelace', 'repairs', 'device_automation', 'config', 'file_upload', 'onboarding', 'diagnostics', 'api'}; already set up: {'system_log', 'websocket_api', 'http'}
+2025-08-20 21:03:16.709 INFO (MainThread) [homeassistant.setup] Setting up search
+2025-08-20 21:03:16.709 INFO (MainThread) [homeassistant.setup] Setup of domain search took 0.00 seconds
+2025-08-20 21:03:16.709 INFO (MainThread) [homeassistant.setup] Setting up auth
+2025-08-20 21:03:16.710 INFO (MainThread) [homeassistant.setup] Setup of domain auth took 0.00 seconds
+2025-08-20 21:03:16.710 INFO (MainThread) [homeassistant.setup] Setting up onboarding
+2025-08-20 21:03:16.710 INFO (MainThread) [homeassistant.setup] Setting up repairs
+2025-08-20 21:03:16.711 INFO (MainThread) [homeassistant.setup] Setup of domain repairs took 0.00 seconds
+2025-08-20 21:03:16.711 INFO (MainThread) [homeassistant.setup] Setting up device_automation
+2025-08-20 21:03:16.711 INFO (MainThread) [homeassistant.setup] Setup of domain device_automation took 0.00 seconds
+2025-08-20 21:03:16.711 INFO (MainThread) [homeassistant.setup] Setting up config
+2025-08-20 21:03:16.713 INFO (MainThread) [homeassistant.setup] Setup of domain config took 0.00 seconds
+2025-08-20 21:03:16.713 INFO (MainThread) [homeassistant.setup] Setting up file_upload
+2025-08-20 21:03:16.713 INFO (MainThread) [homeassistant.setup] Setup of domain file_upload took 0.00 seconds
+2025-08-20 21:03:16.713 INFO (MainThread) [homeassistant.setup] Setting up api
+2025-08-20 21:03:16.715 INFO (MainThread) [homeassistant.setup] Setup of domain api took 0.00 seconds
+2025-08-20 21:03:16.715 INFO (MainThread) [homeassistant.setup] Setting up diagnostics
+2025-08-20 21:03:16.715 INFO (MainThread) [homeassistant.setup] Setup of domain diagnostics took 0.00 seconds
+2025-08-20 21:03:16.726 INFO (MainThread) [homeassistant.setup] Setup of domain onboarding took 0.02 seconds
+2025-08-20 21:03:16.727 INFO (MainThread) [homeassistant.setup] Setting up lovelace
+2025-08-20 21:03:16.728 INFO (MainThread) [homeassistant.setup] Setup of domain lovelace took 0.00 seconds
+2025-08-20 21:03:16.733 INFO (MainThread) [homeassistant.setup] Setting up frontend
+2025-08-20 21:03:16.740 INFO (MainThread) [homeassistant.setup] Setup of domain frontend took 0.01 seconds
+2025-08-20 21:03:16.741 INFO (MainThread) [homeassistant.bootstrap] Setting up stage recorder: {'recorder'}; already set up: {}
 Dependencies: {}; already set up: {}
-2025-08-20 21:01:13.090 INFO (MainThread) [homeassistant.components.http] Now listening on port 8123
-2025-08-20 21:01:13.091 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.00 seconds
-2025-08-20 21:01:13.099 INFO (MainThread) [homeassistant.setup] Setting up recorder
-2025-08-20 21:01:13.127 WARNING (Recorder) [homeassistant.components.recorder.util] The system could not validate that the sqlite3 database at //config/home-assistant_v2.db was shutdown cleanly
-2025-08-20 21:01:13.192 WARNING (Recorder) [homeassistant.components.recorder.util] Ended unfinished session (id=7 from 2025-08-20 18:56:59.534053)
-2025-08-20 21:01:13.217 INFO (MainThread) [homeassistant.setup] Setup of domain recorder took 0.12 seconds
-2025-08-20 21:01:13.218 INFO (MainThread) [homeassistant.bootstrap] Nothing to set up in stage debugger: {'debugpy'}
-2025-08-20 21:01:13.218 INFO (MainThread) [homeassistant.bootstrap] Setting up stage zeroconf: {'zeroconf'}; already set up: {}
-Dependencies: {}; already set up: {'api', 'http', 'network', 'websocket_api'}
-2025-08-20 21:01:13.218 INFO (MainThread) [homeassistant.setup] Setting up zeroconf
-2025-08-20 21:01:13.222 INFO (MainThread) [homeassistant.components.zeroconf] Starting Zeroconf broadcast
-2025-08-20 21:01:13.223 INFO (MainThread) [homeassistant.setup] Setup of domain zeroconf took 0.00 seconds
-2025-08-20 21:01:13.224 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 1: {'cloud', 'bluetooth', 'ssdp', 'dhcp', 'usb'}; already set up: {}
-Dependencies: {'conversation', 'tts', 'stt', 'webhook', 'backup', 'assist_pipeline', 'intent', 'wake_word', 'ffmpeg'}; already set up: {'auth', 'websocket_api', 'network', 'repairs', 'http'}
-2025-08-20 21:01:13.225 INFO (MainThread) [homeassistant.setup] Setting up webhook
-2025-08-20 21:01:13.226 INFO (MainThread) [homeassistant.setup] Setup of domain webhook took 0.00 seconds
-2025-08-20 21:01:13.226 INFO (MainThread) [homeassistant.setup] Setting up backup
-2025-08-20 21:01:13.232 INFO (MainThread) [homeassistant.setup] Setup of domain backup took 0.01 seconds
-2025-08-20 21:01:13.272 INFO (MainThread) [homeassistant.setup] Setting up intent
-2025-08-20 21:01:13.273 INFO (MainThread) [homeassistant.setup] Setup of domain intent took 0.00 seconds
-2025-08-20 21:01:13.279 INFO (MainThread) [homeassistant.setup] Setting up ffmpeg
-2025-08-20 21:01:13.279 INFO (MainThread) [homeassistant.setup] Setup of domain ffmpeg took 0.00 seconds
-2025-08-20 21:01:13.288 INFO (MainThread) [homeassistant.setup] Setting up stt
-2025-08-20 21:01:13.289 INFO (MainThread) [homeassistant.setup] Setup of domain stt took 0.00 seconds
-2025-08-20 21:01:13.292 INFO (MainThread) [homeassistant.setup] Setting up wake_word
-2025-08-20 21:01:13.292 INFO (MainThread) [homeassistant.setup] Setup of domain wake_word took 0.00 seconds
-2025-08-20 21:01:13.308 INFO (MainThread) [homeassistant.setup] Setting up usb
-2025-08-20 21:01:13.308 INFO (MainThread) [homeassistant.setup] Setup of domain usb took 0.00 seconds
-2025-08-20 21:01:13.333 INFO (MainThread) [homeassistant.setup] Setting up ssdp
-2025-08-20 21:01:13.337 INFO (MainThread) [homeassistant.setup] Setup of domain ssdp took 0.00 seconds
-2025-08-20 21:01:13.860 INFO (MainThread) [homeassistant.setup] Setting up dhcp
-2025-08-20 21:01:13.860 INFO (MainThread) [homeassistant.setup] Setup of domain dhcp took 0.00 seconds
-2025-08-20 21:01:13.948 INFO (MainThread) [homeassistant.setup] Setting up conversation
-2025-08-20 21:01:13.949 INFO (MainThread) [homeassistant.setup] Setup of domain conversation took 0.00 seconds
-2025-08-20 21:01:13.985 INFO (MainThread) [homeassistant.setup] Setting up tts
-2025-08-20 21:01:14.001 INFO (MainThread) [homeassistant.setup] Setting up bluetooth
-2025-08-20 21:01:14.011 INFO (MainThread) [homeassistant.setup] Setup of domain tts took 0.03 seconds
-2025-08-20 21:01:14.012 INFO (MainThread) [homeassistant.setup] Setting up event
-2025-08-20 21:01:14.012 INFO (MainThread) [homeassistant.setup] Setup of domain event took 0.00 seconds
-2025-08-20 21:01:14.012 INFO (MainThread) [homeassistant.components.event] Setting up backup.event
-2025-08-20 21:01:14.013 INFO (MainThread) [homeassistant.setup] Setting up sensor
-2025-08-20 21:01:14.014 INFO (MainThread) [homeassistant.setup] Setup of domain sensor took 0.00 seconds
-2025-08-20 21:01:14.014 INFO (MainThread) [homeassistant.components.sensor] Setting up backup.sensor
-2025-08-20 21:01:14.045 INFO (MainThread) [homeassistant.setup] Setup of domain bluetooth took 0.04 seconds
-2025-08-20 21:01:14.063 INFO (MainThread) [homeassistant.setup] Setting up assist_pipeline
-2025-08-20 21:01:14.064 INFO (MainThread) [homeassistant.setup] Setup of domain assist_pipeline took 0.00 seconds
-2025-08-20 21:01:14.238 INFO (MainThread) [homeassistant.setup] Setting up cloud
-2025-08-20 21:01:14.242 INFO (MainThread) [homeassistant.setup] Setup of domain cloud took 0.00 seconds
-2025-08-20 21:01:14.242 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'timer', 'scene', 'schedule', 'zone', 'go2rtc', 'input_datetime', 'application_credentials', 'input_number', 'radio_browser', 'person', 'counter', 'analytics', 'sun', 'input_select', 'script', 'system_health', 'hardware', 'google_translate', 'automation', 'input_boolean', 'tag', 'input_text', 'shopping_list', 'default_config', 'input_button'}; already set up: {'logger', 'frontend', 'backup', 'homeassistant', 'network'}
-Dependencies: {'mobile_app', 'camera', 'logbook', 'image_upload', 'energy', 'homeassistant_alerts', 'media_source', 'my', 'trace', 'history', 'stream', 'blueprint'}; already set up: {'device_automation', 'api', 'frontend', 'webhook', 'intent', 'dhcp', 'network', 'diagnostics', 'cloud', 'file_upload', 'auth', 'backup', 'system_log', 'zeroconf', 'ffmpeg', 'onboarding', 'http', 'conversation', 'stt', 'config', 'usb', 'search', 'recorder', 'bluetooth', 'tts', 'ssdp', 'websocket_api', 'assist_pipeline', 'lovelace', 'wake_word', 'repairs'}
-2025-08-20 21:01:14.242 INFO (MainThread) [homeassistant.setup] Setting up scene
-2025-08-20 21:01:14.245 INFO (MainThread) [homeassistant.components.scene] Setting up homeassistant.scene
-2025-08-20 21:01:14.246 INFO (MainThread) [homeassistant.setup] Setup of domain scene took 0.00 seconds
-2025-08-20 21:01:14.247 INFO (MainThread) [homeassistant.setup] Setting up camera
-2025-08-20 21:01:14.249 INFO (MainThread) [homeassistant.setup] Setup of domain camera took 0.00 seconds
-2025-08-20 21:01:14.250 INFO (MainThread) [homeassistant.setup] Setting up system_health
-2025-08-20 21:01:14.250 INFO (MainThread) [homeassistant.setup] Setup of domain system_health took 0.00 seconds
-2025-08-20 21:01:14.250 INFO (MainThread) [homeassistant.setup] Setting up timer
-2025-08-20 21:01:14.251 INFO (MainThread) [homeassistant.setup] Setup of domain timer took 0.00 seconds
-2025-08-20 21:01:14.251 INFO (MainThread) [homeassistant.setup] Setting up blueprint
-2025-08-20 21:01:14.251 INFO (MainThread) [homeassistant.setup] Setup of domain blueprint took 0.00 seconds
-2025-08-20 21:01:14.251 INFO (MainThread) [homeassistant.setup] Setting up trace
-2025-08-20 21:01:14.252 INFO (MainThread) [homeassistant.setup] Setup of domain trace took 0.00 seconds
-2025-08-20 21:01:14.252 INFO (MainThread) [homeassistant.setup] Setting up automation
-2025-08-20 21:01:14.252 INFO (MainThread) [homeassistant.setup] Setup of domain automation took 0.00 seconds
-2025-08-20 21:01:14.253 INFO (MainThread) [homeassistant.setup] Setting up logbook
-2025-08-20 21:01:14.254 INFO (MainThread) [homeassistant.setup] Setup of domain logbook took 0.00 seconds
-2025-08-20 21:01:14.254 INFO (MainThread) [homeassistant.setup] Setting up history
-2025-08-20 21:01:14.254 INFO (MainThread) [homeassistant.setup] Setup of domain history took 0.00 seconds
-2025-08-20 21:01:14.255 INFO (MainThread) [homeassistant.setup] Setting up input_boolean
-2025-08-20 21:01:14.255 INFO (MainThread) [homeassistant.setup] Setup of domain input_boolean took 0.00 seconds
-2025-08-20 21:01:14.255 INFO (MainThread) [homeassistant.setup] Setting up zone
-2025-08-20 21:01:14.256 INFO (MainThread) [homeassistant.setup] Setup of domain zone took 0.00 seconds
-2025-08-20 21:01:14.257 INFO (MainThread) [homeassistant.setup] Setting up stream
-2025-08-20 21:01:14.258 INFO (MainThread) [homeassistant.setup] Setting up image_upload
-2025-08-20 21:01:14.258 INFO (MainThread) [homeassistant.setup] Setup of domain image_upload took 0.00 seconds
-2025-08-20 21:01:14.259 INFO (MainThread) [homeassistant.setup] Setting up person
-2025-08-20 21:01:14.260 INFO (MainThread) [homeassistant.setup] Setting up input_number
-2025-08-20 21:01:14.261 INFO (MainThread) [homeassistant.setup] Setup of domain input_number took 0.00 seconds
-2025-08-20 21:01:14.261 INFO (MainThread) [homeassistant.setup] Setting up media_source
-2025-08-20 21:01:14.262 INFO (MainThread) [homeassistant.setup] Setup of domain media_source took 0.00 seconds
-2025-08-20 21:01:14.262 INFO (MainThread) [homeassistant.setup] Setting up input_select
-2025-08-20 21:01:14.264 INFO (MainThread) [homeassistant.setup] Setup of domain input_select took 0.00 seconds
-2025-08-20 21:01:14.264 INFO (MainThread) [homeassistant.setup] Setting up script
-2025-08-20 21:01:14.265 INFO (MainThread) [homeassistant.setup] Setup of domain script took 0.00 seconds
-2025-08-20 21:01:14.265 INFO (MainThread) [homeassistant.setup] Setting up input_button
-2025-08-20 21:01:14.266 INFO (MainThread) [homeassistant.setup] Setup of domain input_button took 0.00 seconds
-2025-08-20 21:01:14.268 INFO (MainThread) [homeassistant.setup] Setup of domain person took 0.01 seconds
-2025-08-20 21:01:14.349 INFO (MainThread) [homeassistant.setup] Setting up hardware
-2025-08-20 21:01:14.367 INFO (MainThread) [homeassistant.setup] Setting up google_translate
-2025-08-20 21:01:14.367 INFO (MainThread) [homeassistant.setup] Setup of domain google_translate took 0.00 seconds
-2025-08-20 21:01:14.381 INFO (MainThread) [homeassistant.setup] Setting up schedule
-2025-08-20 21:01:14.382 INFO (MainThread) [homeassistant.setup] Setup of domain schedule took 0.00 seconds
-2025-08-20 21:01:14.390 INFO (MainThread) [homeassistant.setup] Setup of domain hardware took 0.04 seconds
-2025-08-20 21:01:14.415 INFO (MainThread) [homeassistant.setup] Setup of domain stream took 0.16 seconds
-2025-08-20 21:01:14.416 INFO (MainThread) [homeassistant.setup] Setting up energy
-2025-08-20 21:01:14.416 INFO (MainThread) [homeassistant.setup] Setup of domain energy took 0.00 seconds
-2025-08-20 21:01:14.459 INFO (MainThread) [homeassistant.setup] Setting up go2rtc
-2025-08-20 21:01:14.462 INFO (MainThread) [homeassistant.setup] Setting up input_datetime
-2025-08-20 21:01:14.463 INFO (MainThread) [homeassistant.setup] Setup of domain input_datetime took 0.00 seconds
-2025-08-20 21:01:14.468 INFO (MainThread) [homeassistant.setup] Setting up application_credentials
-2025-08-20 21:01:14.469 INFO (MainThread) [homeassistant.setup] Setup of domain application_credentials took 0.00 seconds
-2025-08-20 21:01:14.475 INFO (MainThread) [homeassistant.setup] Setting up tag
-2025-08-20 21:01:14.476 INFO (MainThread) [homeassistant.setup] Setup of domain tag took 0.00 seconds
-2025-08-20 21:01:14.532 INFO (MainThread) [homeassistant.setup] Setting up radio_browser
-2025-08-20 21:01:14.532 INFO (MainThread) [homeassistant.setup] Setup of domain radio_browser took 0.00 seconds
-2025-08-20 21:01:14.536 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_alerts
-2025-08-20 21:01:14.537 INFO (MainThread) [homeassistant.setup] Setup of domain homeassistant_alerts took 0.00 seconds
-2025-08-20 21:01:14.541 INFO (MainThread) [homeassistant.setup] Setting up counter
-2025-08-20 21:01:14.542 INFO (MainThread) [homeassistant.setup] Setup of domain counter took 0.00 seconds
-2025-08-20 21:01:14.545 INFO (MainThread) [homeassistant.setup] Setting up input_text
-2025-08-20 21:01:14.546 INFO (MainThread) [homeassistant.setup] Setup of domain input_text took 0.00 seconds
-2025-08-20 21:01:14.549 INFO (MainThread) [homeassistant.setup] Setting up sun
-2025-08-20 21:01:14.549 INFO (MainThread) [homeassistant.setup] Setup of domain sun took 0.00 seconds
-2025-08-20 21:01:14.551 INFO (MainThread) [homeassistant.setup] Setting up binary_sensor
-2025-08-20 21:01:14.552 INFO (MainThread) [homeassistant.setup] Setup of domain binary_sensor took 0.00 seconds
-2025-08-20 21:01:14.555 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up sun.binary_sensor
-2025-08-20 21:01:14.555 INFO (MainThread) [homeassistant.components.sensor] Setting up sun.sensor
-2025-08-20 21:01:14.558 INFO (MainThread) [homeassistant.setup] Setting up my
-2025-08-20 21:01:14.558 INFO (MainThread) [homeassistant.setup] Setup of domain my took 0.00 seconds
-2025-08-20 21:01:14.563 INFO (MainThread) [homeassistant.setup] Setting up shopping_list
-2025-08-20 21:01:14.563 INFO (MainThread) [homeassistant.setup] Setup of domain shopping_list took 0.00 seconds
-2025-08-20 21:01:14.574 INFO (MainThread) [homeassistant.setup] Setup of domain go2rtc took 0.11 seconds
-2025-08-20 21:01:14.581 INFO (MainThread) [homeassistant.components.tts] Setting up google_translate.tts
-2025-08-20 21:01:14.585 INFO (MainThread) [homeassistant.components.sensor] Setting up energy.sensor
-2025-08-20 21:01:14.588 INFO (MainThread) [homeassistant.setup] Setting up analytics
-2025-08-20 21:01:14.588 INFO (MainThread) [homeassistant.setup] Setup of domain analytics took 0.00 seconds
-2025-08-20 21:01:14.606 INFO (MainThread) [homeassistant.setup] Setting up mobile_app
-2025-08-20 21:01:14.606 INFO (MainThread) [homeassistant.setup] Setting up notify
-2025-08-20 21:01:14.606 INFO (MainThread) [homeassistant.setup] Setup of domain notify took 0.00 seconds
-2025-08-20 21:01:14.607 INFO (MainThread) [homeassistant.setup] Setup of domain mobile_app took 0.00 seconds
-2025-08-20 21:01:14.607 INFO (MainThread) [homeassistant.components.notify] Setting up notify.mobile_app
-2025-08-20 21:01:14.607 INFO (MainThread) [homeassistant.setup] Setting up default_config
-2025-08-20 21:01:14.607 INFO (MainThread) [homeassistant.setup] Setup of domain default_config took 0.00 seconds
-2025-08-20 21:01:14.612 INFO (MainThread) [homeassistant.setup] Setting up todo
-2025-08-20 21:01:14.614 INFO (MainThread) [homeassistant.setup] Setup of domain todo took 0.00 seconds
-2025-08-20 21:01:14.616 INFO (MainThread) [homeassistant.components.todo] Setting up shopping_list.todo
-2025-08-20 21:01:14.666 INFO (MainThread) [homeassistant.bootstrap] Home Assistant initialized in 2.33s
-2025-08-20 21:01:14.667 INFO (MainThread) [homeassistant.core] Starting Home Assistant 2025.8.2
-2025-08-20 21:02:14.548 INFO (SyncWorker_5) [homeassistant.loader] Loaded mold_indicator from homeassistant.components.mold_indicator
-2025-08-20 21:02:14.549 INFO (SyncWorker_5) [homeassistant.loader] Loaded growatt_server from homeassistant.components.growatt_server
-2025-08-20 21:02:14.549 INFO (SyncWorker_5) [homeassistant.loader] Loaded filter from homeassistant.components.filter
-2025-08-20 21:02:14.550 INFO (SyncWorker_5) [homeassistant.loader] Loaded filesize from homeassistant.components.filesize
-2025-08-20 21:02:14.550 INFO (SyncWorker_5) [homeassistant.loader] Loaded zodiac from homeassistant.components.zodiac
-2025-08-20 21:02:14.551 INFO (SyncWorker_5) [homeassistant.loader] Loaded emulated_roku from homeassistant.components.emulated_roku
-2025-08-20 21:02:14.551 INFO (SyncWorker_5) [homeassistant.loader] Loaded history_stats from homeassistant.components.history_stats
-2025-08-20 21:02:14.552 INFO (SyncWorker_5) [homeassistant.loader] Loaded holiday from homeassistant.components.holiday
-2025-08-20 21:02:14.552 INFO (SyncWorker_5) [homeassistant.loader] Loaded trend from homeassistant.components.trend
-2025-08-20 21:02:14.553 INFO (SyncWorker_5) [homeassistant.loader] Loaded proximity from homeassistant.components.proximity
-2025-08-20 21:02:14.553 INFO (SyncWorker_5) [homeassistant.loader] Loaded generic_hygrostat from homeassistant.components.generic_hygrostat
-2025-08-20 21:02:14.553 INFO (SyncWorker_5) [homeassistant.loader] Loaded aurora from homeassistant.components.aurora
-2025-08-20 21:02:14.554 INFO (SyncWorker_5) [homeassistant.loader] Loaded local_todo from homeassistant.components.local_todo
-2025-08-20 21:02:14.555 INFO (SyncWorker_5) [homeassistant.loader] Loaded demo from homeassistant.components.demo
-2025-08-20 21:02:14.555 INFO (SyncWorker_5) [homeassistant.loader] Loaded time_date from homeassistant.components.time_date
-2025-08-20 21:02:14.556 INFO (SyncWorker_5) [homeassistant.loader] Loaded moon from homeassistant.components.moon
-2025-08-20 21:02:14.556 INFO (SyncWorker_5) [homeassistant.loader] Loaded random from homeassistant.components.random
-2025-08-20 21:02:14.557 INFO (SyncWorker_5) [homeassistant.loader] Loaded cpuspeed from homeassistant.components.cpuspeed
-2025-08-20 21:02:14.557 INFO (SyncWorker_5) [homeassistant.loader] Loaded season from homeassistant.components.season
-2025-08-20 21:02:14.557 INFO (SyncWorker_5) [homeassistant.loader] Loaded homekit_controller from homeassistant.components.homekit_controller
-2025-08-20 21:02:14.558 INFO (SyncWorker_5) [homeassistant.loader] Loaded statistics from homeassistant.components.statistics
-2025-08-20 21:02:14.558 INFO (SyncWorker_5) [homeassistant.loader] Loaded version from homeassistant.components.version
-2025-08-20 21:02:14.559 INFO (SyncWorker_5) [homeassistant.loader] Loaded generic_thermostat from homeassistant.components.generic_thermostat
-2025-08-20 21:02:14.559 INFO (SyncWorker_5) [homeassistant.loader] Loaded energenie_power_sockets from homeassistant.components.energenie_power_sockets
-2025-08-20 21:02:14.560 INFO (SyncWorker_5) [homeassistant.loader] Loaded plant from homeassistant.components.plant
-2025-08-20 21:02:14.561 INFO (SyncWorker_5) [homeassistant.loader] Loaded google_travel_time from homeassistant.components.google_travel_time
-2025-08-20 21:02:14.561 INFO (SyncWorker_5) [homeassistant.loader] Loaded local_calendar from homeassistant.components.local_calendar
-2025-08-20 21:02:14.562 INFO (SyncWorker_5) [homeassistant.loader] Loaded uptime from homeassistant.components.uptime
-2025-08-20 21:02:14.562 INFO (SyncWorker_5) [homeassistant.loader] Loaded nmap_tracker from homeassistant.components.nmap_tracker
-2025-08-20 21:02:14.563 INFO (SyncWorker_5) [homeassistant.loader] Loaded remote_calendar from homeassistant.components.remote_calendar
-2025-08-20 21:02:14.563 INFO (SyncWorker_5) [homeassistant.loader] Loaded generic from homeassistant.components.generic
-2025-08-20 21:02:14.564 INFO (SyncWorker_5) [homeassistant.loader] Loaded group from homeassistant.components.group
-2025-08-20 21:02:14.564 INFO (SyncWorker_5) [homeassistant.loader] Loaded moehlenhoff_alpha2 from homeassistant.components.moehlenhoff_alpha2
-2025-08-20 21:02:14.565 INFO (SyncWorker_5) [homeassistant.loader] Loaded cert_expiry from homeassistant.components.cert_expiry
-2025-08-20 21:02:14.565 INFO (SyncWorker_5) [homeassistant.loader] Loaded integration from homeassistant.components.integration
-2025-08-20 21:02:14.566 INFO (SyncWorker_5) [homeassistant.loader] Loaded waze_travel_time from homeassistant.components.waze_travel_time
-2025-08-20 21:02:14.567 INFO (SyncWorker_5) [homeassistant.loader] Loaded workday from homeassistant.components.workday
-2025-08-20 21:02:14.567 INFO (SyncWorker_5) [homeassistant.loader] Loaded min_max from homeassistant.components.min_max
-2025-08-20 21:02:14.568 INFO (SyncWorker_5) [homeassistant.loader] Loaded vegehub from homeassistant.components.vegehub
-2025-08-20 21:02:14.568 INFO (SyncWorker_5) [homeassistant.loader] Loaded derivative from homeassistant.components.derivative
-2025-08-20 21:02:14.569 INFO (SyncWorker_5) [homeassistant.loader] Loaded garages_amsterdam from homeassistant.components.garages_amsterdam
-2025-08-20 21:02:14.569 INFO (SyncWorker_5) [homeassistant.loader] Loaded local_ip from homeassistant.components.local_ip
-2025-08-20 21:02:14.570 INFO (SyncWorker_5) [homeassistant.loader] Loaded nextbus from homeassistant.components.nextbus
-2025-08-20 21:02:14.570 INFO (SyncWorker_5) [homeassistant.loader] Loaded islamic_prayer_times from homeassistant.components.islamic_prayer_times
-2025-08-20 21:02:14.571 INFO (SyncWorker_5) [homeassistant.loader] Loaded tod from homeassistant.components.tod
-2025-08-20 21:02:14.571 INFO (SyncWorker_5) [homeassistant.loader] Loaded alert from homeassistant.components.alert
-2025-08-20 21:02:14.571 INFO (SyncWorker_5) [homeassistant.loader] Loaded rpi_power from homeassistant.components.rpi_power
-2025-08-20 21:02:14.572 INFO (SyncWorker_5) [homeassistant.loader] Loaded utility_meter from homeassistant.components.utility_meter
-2025-08-20 21:02:14.572 INFO (SyncWorker_5) [homeassistant.loader] Loaded threshold from homeassistant.components.threshold
-2025-08-20 21:02:19.994 DEBUG (MainThread) [custom_components.tylo.hub] Testing connection to localhost on mock
-2025-08-20 21:02:19.994 INFO (MainThread) [custom_components.tylo.protocol] Mock mode enabled - simulating connection to mock
-2025-08-20 21:02:19.994 INFO (MainThread) [custom_components.tylo.hub] Successfully connected to sauna controller
-2025-08-20 21:02:19.994 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial closed
-2025-08-20 21:02:19.994 INFO (MainThread) [custom_components.tylo.protocol] Disconnected from mock
-2025-08-20 21:02:19.994 INFO (MainThread) [homeassistant.setup] Setting up tylo
-2025-08-20 21:02:19.994 ERROR (MainThread) [homeassistant.config_entries] Error setting up entry Tylö Sauna (mock) for tylo
-Traceback (most recent call last):
-  File "/usr/src/homeassistant/homeassistant/config_entries.py", line 749, in __async_setup_with_context
-    result = await component.async_setup_entry(hass, self)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/config/custom_components/tylo/__init__.py", line 16, in async_setup_entry
-    host = entry.data[CONF_HOST]
-           ~~~~~~~~~~^^^^^^^^^^^
-KeyError: 'host'
-2025-08-20 21:02:47.056 INFO (Recorder) [homeassistant.components.recorder.pool.RecorderPool] Pool recreating
+2025-08-20 21:03:16.743 INFO (MainThread) [homeassistant.components.http] Now listening on port 8123
+2025-08-20 21:03:16.744 INFO (MainThread) [homeassistant.setup] Setup of domain http took 0.00 seconds
+2025-08-20 21:03:16.754 INFO (MainThread) [homeassistant.setup] Setting up recorder
+2025-08-20 21:03:16.850 INFO (MainThread) [homeassistant.setup] Setup of domain recorder took 0.10 seconds
+2025-08-20 21:03:16.851 INFO (MainThread) [homeassistant.bootstrap] Nothing to set up in stage debugger: {'debugpy'}
+2025-08-20 21:03:16.851 INFO (MainThread) [homeassistant.bootstrap] Setting up stage zeroconf: {'zeroconf'}; already set up: {}
+Dependencies: {}; already set up: {'api', 'network', 'websocket_api', 'http'}
+2025-08-20 21:03:16.856 INFO (MainThread) [homeassistant.setup] Setting up zeroconf
+2025-08-20 21:03:16.858 INFO (MainThread) [homeassistant.components.zeroconf] Starting Zeroconf broadcast
+2025-08-20 21:03:16.858 INFO (MainThread) [homeassistant.setup] Setup of domain zeroconf took 0.00 seconds
+2025-08-20 21:03:16.859 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 1: {'dhcp', 'bluetooth', 'ssdp', 'usb', 'cloud'}; already set up: {}
+Dependencies: {'tts', 'ffmpeg', 'conversation', 'wake_word', 'webhook', 'assist_pipeline', 'backup', 'stt', 'intent'}; already set up: {'network', 'websocket_api', 'auth', 'repairs', 'http'}
+2025-08-20 21:03:16.860 INFO (MainThread) [homeassistant.setup] Setting up webhook
+2025-08-20 21:03:16.861 INFO (MainThread) [homeassistant.setup] Setup of domain webhook took 0.00 seconds
+2025-08-20 21:03:16.870 INFO (MainThread) [homeassistant.setup] Setting up backup
+2025-08-20 21:03:16.874 INFO (MainThread) [homeassistant.setup] Setup of domain backup took 0.00 seconds
+2025-08-20 21:03:16.887 INFO (MainThread) [homeassistant.setup] Setting up intent
+2025-08-20 21:03:16.888 INFO (MainThread) [homeassistant.setup] Setup of domain intent took 0.00 seconds
+2025-08-20 21:03:16.892 INFO (MainThread) [homeassistant.setup] Setting up wake_word
+2025-08-20 21:03:16.892 INFO (MainThread) [homeassistant.setup] Setup of domain wake_word took 0.00 seconds
+2025-08-20 21:03:16.898 INFO (MainThread) [homeassistant.setup] Setting up stt
+2025-08-20 21:03:16.899 INFO (MainThread) [homeassistant.setup] Setup of domain stt took 0.00 seconds
+2025-08-20 21:03:16.906 INFO (MainThread) [homeassistant.setup] Setting up ffmpeg
+2025-08-20 21:03:16.906 INFO (MainThread) [homeassistant.setup] Setup of domain ffmpeg took 0.00 seconds
+2025-08-20 21:03:17.440 INFO (MainThread) [homeassistant.setup] Setting up dhcp
+2025-08-20 21:03:17.440 INFO (MainThread) [homeassistant.setup] Setup of domain dhcp took 0.00 seconds
+2025-08-20 21:03:17.451 INFO (MainThread) [homeassistant.setup] Setting up usb
+2025-08-20 21:03:17.451 INFO (MainThread) [homeassistant.setup] Setup of domain usb took 0.00 seconds
+2025-08-20 21:03:17.476 INFO (MainThread) [homeassistant.setup] Setting up ssdp
+2025-08-20 21:03:17.479 INFO (MainThread) [homeassistant.setup] Setup of domain ssdp took 0.00 seconds
+2025-08-20 21:03:17.549 INFO (MainThread) [homeassistant.setup] Setting up conversation
+2025-08-20 21:03:17.550 INFO (MainThread) [homeassistant.setup] Setup of domain conversation took 0.00 seconds
+2025-08-20 21:03:17.583 INFO (MainThread) [homeassistant.setup] Setting up tts
+2025-08-20 21:03:17.596 INFO (MainThread) [homeassistant.setup] Setup of domain tts took 0.01 seconds
+2025-08-20 21:03:17.598 INFO (MainThread) [homeassistant.setup] Setting up bluetooth
+2025-08-20 21:03:17.608 INFO (MainThread) [homeassistant.setup] Setting up event
+2025-08-20 21:03:17.609 INFO (MainThread) [homeassistant.setup] Setup of domain event took 0.00 seconds
+2025-08-20 21:03:17.609 INFO (MainThread) [homeassistant.setup] Setting up sensor
+2025-08-20 21:03:17.609 INFO (MainThread) [homeassistant.setup] Setup of domain sensor took 0.00 seconds
+2025-08-20 21:03:17.628 INFO (MainThread) [homeassistant.components.event] Setting up backup.event
+2025-08-20 21:03:17.629 INFO (MainThread) [homeassistant.components.sensor] Setting up backup.sensor
+2025-08-20 21:03:17.643 INFO (MainThread) [homeassistant.setup] Setup of domain bluetooth took 0.05 seconds
+2025-08-20 21:03:17.663 INFO (MainThread) [homeassistant.setup] Setting up assist_pipeline
+2025-08-20 21:03:17.664 INFO (MainThread) [homeassistant.setup] Setup of domain assist_pipeline took 0.00 seconds
+2025-08-20 21:03:17.871 INFO (MainThread) [homeassistant.setup] Setting up cloud
+2025-08-20 21:03:17.875 INFO (MainThread) [homeassistant.setup] Setup of domain cloud took 0.00 seconds
+2025-08-20 21:03:17.876 INFO (MainThread) [homeassistant.bootstrap] Setting up stage 2: {'scene', 'input_datetime', 'schedule', 'system_health', 'timer', 'input_text', 'tag', 'google_translate', 'script', 'sun', 'radio_browser', 'input_boolean', 'person', 'input_number', 'analytics', 'automation', 'go2rtc', 'zone', 'hardware', 'shopping_list', 'input_select', 'default_config', 'tylo', 'counter', 'input_button', 'application_credentials'}; already set up: {'homeassistant', 'logger', 'network', 'backup', 'frontend'}
+Dependencies: {'media_source', 'logbook', 'history', 'image_upload', 'my', 'homeassistant_alerts', 'blueprint', 'trace', 'energy', 'stream', 'mobile_app', 'camera'}; already set up: {'dhcp', 'lovelace', 'wake_word', 'backup', 'cloud', 'search', 'auth', 'websocket_api', 'http', 'config', 'webhook', 'recorder', 'system_log', 'network', 'tts', 'repairs', 'conversation', 'usb', 'assist_pipeline', 'file_upload', 'frontend', 'api', 'zeroconf', 'ffmpeg', 'bluetooth', 'device_automation', 'ssdp', 'onboarding', 'diagnostics', 'stt', 'intent'}
+2025-08-20 21:03:17.876 INFO (MainThread) [homeassistant.setup] Setting up scene
+2025-08-20 21:03:17.876 INFO (MainThread) [homeassistant.components.scene] Setting up homeassistant.scene
+2025-08-20 21:03:17.877 INFO (MainThread) [homeassistant.setup] Setup of domain scene took 0.00 seconds
+2025-08-20 21:03:17.877 INFO (MainThread) [homeassistant.setup] Setting up camera
+2025-08-20 21:03:17.879 INFO (MainThread) [homeassistant.setup] Setup of domain camera took 0.00 seconds
+2025-08-20 21:03:17.879 INFO (MainThread) [homeassistant.setup] Setting up media_source
+2025-08-20 21:03:17.880 INFO (MainThread) [homeassistant.setup] Setup of domain media_source took 0.00 seconds
+2025-08-20 21:03:17.880 INFO (MainThread) [homeassistant.setup] Setting up logbook
+2025-08-20 21:03:17.880 INFO (MainThread) [homeassistant.setup] Setup of domain logbook took 0.00 seconds
+2025-08-20 21:03:17.880 INFO (MainThread) [homeassistant.setup] Setting up history
+2025-08-20 21:03:17.882 INFO (MainThread) [homeassistant.setup] Setup of domain history took 0.00 seconds
+2025-08-20 21:03:17.882 INFO (MainThread) [homeassistant.setup] Setting up system_health
+2025-08-20 21:03:17.882 INFO (MainThread) [homeassistant.setup] Setup of domain system_health took 0.00 seconds
+2025-08-20 21:03:17.882 INFO (MainThread) [homeassistant.setup] Setting up blueprint
+2025-08-20 21:03:17.883 INFO (MainThread) [homeassistant.setup] Setup of domain blueprint took 0.00 seconds
+2025-08-20 21:03:17.883 INFO (MainThread) [homeassistant.setup] Setting up timer
+2025-08-20 21:03:17.888 INFO (MainThread) [homeassistant.setup] Setup of domain timer took 0.00 seconds
+2025-08-20 21:03:17.888 INFO (MainThread) [homeassistant.setup] Setting up image_upload
+2025-08-20 21:03:17.889 INFO (MainThread) [homeassistant.setup] Setup of domain image_upload took 0.00 seconds
+2025-08-20 21:03:17.889 INFO (MainThread) [homeassistant.setup] Setting up person
+2025-08-20 21:03:17.890 INFO (MainThread) [homeassistant.setup] Setting up trace
+2025-08-20 21:03:17.890 INFO (MainThread) [homeassistant.setup] Setup of domain trace took 0.00 seconds
+2025-08-20 21:03:17.890 INFO (MainThread) [homeassistant.setup] Setting up script
+2025-08-20 21:03:17.891 INFO (MainThread) [homeassistant.setup] Setup of domain script took 0.00 seconds
+2025-08-20 21:03:17.891 INFO (MainThread) [homeassistant.setup] Setting up stream
+2025-08-20 21:03:17.893 INFO (MainThread) [homeassistant.setup] Setting up input_boolean
+2025-08-20 21:03:17.894 INFO (MainThread) [homeassistant.setup] Setup of domain input_boolean took 0.00 seconds
+2025-08-20 21:03:17.894 INFO (MainThread) [homeassistant.setup] Setting up input_number
+2025-08-20 21:03:17.895 INFO (MainThread) [homeassistant.setup] Setup of domain input_number took 0.00 seconds
+2025-08-20 21:03:17.895 INFO (MainThread) [homeassistant.setup] Setting up automation
+2025-08-20 21:03:17.896 INFO (MainThread) [homeassistant.setup] Setup of domain automation took 0.00 seconds
+2025-08-20 21:03:17.897 INFO (MainThread) [homeassistant.setup] Setting up zone
+2025-08-20 21:03:17.900 INFO (MainThread) [homeassistant.setup] Setup of domain zone took 0.00 seconds
+2025-08-20 21:03:17.900 INFO (MainThread) [homeassistant.setup] Setting up input_select
+2025-08-20 21:03:17.901 INFO (MainThread) [homeassistant.setup] Setup of domain input_select took 0.00 seconds
+2025-08-20 21:03:17.902 INFO (MainThread) [homeassistant.setup] Setting up input_button
+2025-08-20 21:03:17.903 INFO (MainThread) [homeassistant.setup] Setup of domain input_button took 0.00 seconds
+2025-08-20 21:03:17.905 INFO (MainThread) [homeassistant.setup] Setup of domain person took 0.02 seconds
+2025-08-20 21:03:17.975 INFO (MainThread) [homeassistant.setup] Setting up input_datetime
+2025-08-20 21:03:17.977 INFO (MainThread) [homeassistant.setup] Setup of domain input_datetime took 0.00 seconds
+2025-08-20 21:03:17.990 INFO (MainThread) [homeassistant.setup] Setting up schedule
+2025-08-20 21:03:17.991 INFO (MainThread) [homeassistant.setup] Setup of domain schedule took 0.00 seconds
+2025-08-20 21:03:18.001 INFO (MainThread) [homeassistant.setup] Setting up input_text
+2025-08-20 21:03:18.002 INFO (MainThread) [homeassistant.setup] Setup of domain input_text took 0.00 seconds
+2025-08-20 21:03:18.018 INFO (MainThread) [homeassistant.setup] Setting up tag
+2025-08-20 21:03:18.019 INFO (MainThread) [homeassistant.setup] Setup of domain tag took 0.00 seconds
+2025-08-20 21:03:18.035 INFO (MainThread) [homeassistant.setup] Setting up google_translate
+2025-08-20 21:03:18.035 INFO (MainThread) [homeassistant.setup] Setup of domain google_translate took 0.00 seconds
+2025-08-20 21:03:18.057 INFO (MainThread) [homeassistant.setup] Setup of domain stream took 0.17 seconds
+2025-08-20 21:03:18.057 INFO (MainThread) [homeassistant.setup] Setting up sun
+2025-08-20 21:03:18.058 INFO (MainThread) [homeassistant.setup] Setup of domain sun took 0.00 seconds
+2025-08-20 21:03:18.060 INFO (MainThread) [homeassistant.setup] Setting up binary_sensor
+2025-08-20 21:03:18.061 INFO (MainThread) [homeassistant.setup] Setup of domain binary_sensor took 0.00 seconds
+2025-08-20 21:03:18.064 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up sun.binary_sensor
+2025-08-20 21:03:18.065 INFO (MainThread) [homeassistant.components.sensor] Setting up sun.sensor
+2025-08-20 21:03:18.082 INFO (MainThread) [homeassistant.setup] Setting up energy
+2025-08-20 21:03:18.083 INFO (MainThread) [homeassistant.setup] Setup of domain energy took 0.00 seconds
+2025-08-20 21:03:18.155 INFO (MainThread) [homeassistant.setup] Setting up radio_browser
+2025-08-20 21:03:18.155 INFO (MainThread) [homeassistant.setup] Setup of domain radio_browser took 0.00 seconds
+2025-08-20 21:03:18.157 INFO (MainThread) [homeassistant.setup] Setting up my
+2025-08-20 21:03:18.157 INFO (MainThread) [homeassistant.setup] Setup of domain my took 0.00 seconds
+2025-08-20 21:03:18.161 INFO (MainThread) [homeassistant.setup] Setting up homeassistant_alerts
+2025-08-20 21:03:18.162 INFO (MainThread) [homeassistant.setup] Setup of domain homeassistant_alerts took 0.00 seconds
+2025-08-20 21:03:18.208 INFO (MainThread) [homeassistant.setup] Setting up go2rtc
+2025-08-20 21:03:18.221 INFO (MainThread) [homeassistant.setup] Setting up hardware
+2025-08-20 21:03:18.229 INFO (MainThread) [homeassistant.setup] Setting up shopping_list
+2025-08-20 21:03:18.229 INFO (MainThread) [homeassistant.setup] Setup of domain shopping_list took 0.00 seconds
+2025-08-20 21:03:18.250 INFO (MainThread) [homeassistant.setup] Setup of domain hardware took 0.03 seconds
+2025-08-20 21:03:18.309 INFO (MainThread) [homeassistant.setup] Setting up tylo
+2025-08-20 21:03:18.310 INFO (MainThread) [homeassistant.setup] Setup of domain tylo took 0.00 seconds
+2025-08-20 21:03:18.312 INFO (MainThread) [custom_components.tylo.protocol] Mock mode enabled - simulating connection to mock
+2025-08-20 21:03:18.312 INFO (MainThread) [custom_components.tylo.protocol] Starting packet monitoring
+2025-08-20 21:03:18.312 INFO (MainThread) [custom_components.tylo.hub] Successfully initialized and started monitoring
+2025-08-20 21:03:18.318 INFO (MainThread) [homeassistant.setup] Setting up counter
+2025-08-20 21:03:18.319 INFO (MainThread) [homeassistant.setup] Setup of domain counter took 0.00 seconds
+2025-08-20 21:03:18.320 INFO (MainThread) [homeassistant.setup] Setting up application_credentials
+2025-08-20 21:03:18.321 INFO (MainThread) [homeassistant.setup] Setup of domain application_credentials took 0.00 seconds
+2025-08-20 21:03:18.339 INFO (MainThread) [homeassistant.setup] Setup of domain go2rtc took 0.13 seconds
+2025-08-20 21:03:18.351 INFO (MainThread) [homeassistant.setup] Setting up mobile_app
+2025-08-20 21:03:18.351 INFO (MainThread) [homeassistant.setup] Setting up notify
+2025-08-20 21:03:18.352 INFO (MainThread) [homeassistant.setup] Setup of domain notify took 0.00 seconds
+2025-08-20 21:03:18.352 INFO (MainThread) [homeassistant.setup] Setup of domain mobile_app took 0.00 seconds
+2025-08-20 21:03:18.352 INFO (MainThread) [homeassistant.components.notify] Setting up notify.mobile_app
+2025-08-20 21:03:18.353 INFO (MainThread) [homeassistant.setup] Setting up default_config
+2025-08-20 21:03:18.353 INFO (MainThread) [homeassistant.setup] Setup of domain default_config took 0.00 seconds
+2025-08-20 21:03:18.365 INFO (MainThread) [homeassistant.components.tts] Setting up google_translate.tts
+2025-08-20 21:03:18.369 INFO (MainThread) [homeassistant.components.sensor] Setting up energy.sensor
+2025-08-20 21:03:18.372 INFO (MainThread) [homeassistant.setup] Setting up analytics
+2025-08-20 21:03:18.373 INFO (MainThread) [homeassistant.setup] Setup of domain analytics took 0.00 seconds
+2025-08-20 21:03:18.375 INFO (MainThread) [homeassistant.setup] Setting up todo
+2025-08-20 21:03:18.377 INFO (MainThread) [homeassistant.setup] Setup of domain todo took 0.00 seconds
+2025-08-20 21:03:18.379 INFO (MainThread) [homeassistant.components.todo] Setting up shopping_list.todo
+2025-08-20 21:03:18.437 INFO (MainThread) [homeassistant.setup] Setting up switch
+2025-08-20 21:03:18.438 INFO (MainThread) [homeassistant.setup] Setup of domain switch took 0.00 seconds
+2025-08-20 21:03:18.444 INFO (MainThread) [homeassistant.components.switch] Setting up tylo.switch
+2025-08-20 21:03:18.445 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.tylo entity: switch.tylo_sauna_heater
+2025-08-20 21:03:18.446 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.tylo entity: switch.tylo_sauna_light
+2025-08-20 21:03:18.446 INFO (MainThread) [homeassistant.components.sensor] Setting up tylo.sensor
+2025-08-20 21:03:18.447 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_temperature_actual
+2025-08-20 21:03:18.447 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_temperature_set
+2025-08-20 21:03:18.448 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_bathing_time
+2025-08-20 21:03:18.448 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_uptime
+2025-08-20 21:03:18.448 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up tylo.binary_sensor
+2025-08-20 21:03:18.449 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new binary_sensor.tylo entity: binary_sensor.tylo_sauna_ready
+2025-08-20 21:03:36.940 DEBUG (MainThread) [custom_components.tylo.hub] Closing hub connection
+2025-08-20 21:03:36.940 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial closed
+2025-08-20 21:03:36.940 INFO (MainThread) [custom_components.tylo.protocol] Disconnected from mock
+2025-08-20 21:03:36.940 DEBUG (MainThread) [custom_components.tylo.hub] Hub connection closed
+2025-08-20 21:03:36.942 INFO (MainThread) [homeassistant.bootstrap] Home Assistant initialized in 20.99s
+2025-08-20 21:03:36.948 INFO (MainThread) [homeassistant.core] Starting Home Assistant 2025.8.2
+2025-08-20 21:03:43.412 INFO (SyncWorker_3) [homeassistant.loader] Loaded season from homeassistant.components.season
+2025-08-20 21:03:43.413 INFO (SyncWorker_3) [homeassistant.loader] Loaded local_todo from homeassistant.components.local_todo
+2025-08-20 21:03:43.413 INFO (SyncWorker_3) [homeassistant.loader] Loaded threshold from homeassistant.components.threshold
+2025-08-20 21:03:43.414 INFO (SyncWorker_3) [homeassistant.loader] Loaded uptime from homeassistant.components.uptime
+2025-08-20 21:03:43.415 INFO (SyncWorker_3) [homeassistant.loader] Loaded version from homeassistant.components.version
+2025-08-20 21:03:43.415 INFO (SyncWorker_3) [homeassistant.loader] Loaded garages_amsterdam from homeassistant.components.garages_amsterdam
+2025-08-20 21:03:43.416 INFO (SyncWorker_3) [homeassistant.loader] Loaded generic from homeassistant.components.generic
+2025-08-20 21:03:43.417 INFO (SyncWorker_3) [homeassistant.loader] Loaded mold_indicator from homeassistant.components.mold_indicator
+2025-08-20 21:03:43.417 INFO (SyncWorker_3) [homeassistant.loader] Loaded local_ip from homeassistant.components.local_ip
+2025-08-20 21:03:43.418 INFO (SyncWorker_3) [homeassistant.loader] Loaded time_date from homeassistant.components.time_date
+2025-08-20 21:03:43.418 INFO (SyncWorker_3) [homeassistant.loader] Loaded emulated_roku from homeassistant.components.emulated_roku
+2025-08-20 21:03:43.419 INFO (SyncWorker_3) [homeassistant.loader] Loaded islamic_prayer_times from homeassistant.components.islamic_prayer_times
+2025-08-20 21:03:43.420 INFO (SyncWorker_3) [homeassistant.loader] Loaded nmap_tracker from homeassistant.components.nmap_tracker
+2025-08-20 21:03:43.420 INFO (SyncWorker_3) [homeassistant.loader] Loaded proximity from homeassistant.components.proximity
+2025-08-20 21:03:43.421 INFO (SyncWorker_3) [homeassistant.loader] Loaded cpuspeed from homeassistant.components.cpuspeed
+2025-08-20 21:03:43.421 INFO (SyncWorker_3) [homeassistant.loader] Loaded waze_travel_time from homeassistant.components.waze_travel_time
+2025-08-20 21:03:43.421 INFO (SyncWorker_3) [homeassistant.loader] Loaded tod from homeassistant.components.tod
+2025-08-20 21:03:43.422 INFO (SyncWorker_3) [homeassistant.loader] Loaded filesize from homeassistant.components.filesize
+2025-08-20 21:03:43.423 INFO (SyncWorker_3) [homeassistant.loader] Loaded nextbus from homeassistant.components.nextbus
+2025-08-20 21:03:43.423 INFO (SyncWorker_3) [homeassistant.loader] Loaded generic_thermostat from homeassistant.components.generic_thermostat
+2025-08-20 21:03:43.424 INFO (SyncWorker_3) [homeassistant.loader] Loaded plant from homeassistant.components.plant
+2025-08-20 21:03:43.424 INFO (SyncWorker_3) [homeassistant.loader] Loaded moon from homeassistant.components.moon
+2025-08-20 21:03:43.425 INFO (SyncWorker_3) [homeassistant.loader] Loaded energenie_power_sockets from homeassistant.components.energenie_power_sockets
+2025-08-20 21:03:43.425 INFO (SyncWorker_3) [homeassistant.loader] Loaded zodiac from homeassistant.components.zodiac
+2025-08-20 21:03:43.426 INFO (SyncWorker_3) [homeassistant.loader] Loaded derivative from homeassistant.components.derivative
+2025-08-20 21:03:43.426 INFO (SyncWorker_3) [homeassistant.loader] Loaded integration from homeassistant.components.integration
+2025-08-20 21:03:43.427 INFO (SyncWorker_3) [homeassistant.loader] Loaded demo from homeassistant.components.demo
+2025-08-20 21:03:43.428 INFO (SyncWorker_3) [homeassistant.loader] Loaded workday from homeassistant.components.workday
+2025-08-20 21:03:43.428 INFO (SyncWorker_3) [homeassistant.loader] Loaded local_calendar from homeassistant.components.local_calendar
+2025-08-20 21:03:43.429 INFO (SyncWorker_3) [homeassistant.loader] Loaded homekit_controller from homeassistant.components.homekit_controller
+2025-08-20 21:03:43.430 INFO (SyncWorker_3) [homeassistant.loader] Loaded rpi_power from homeassistant.components.rpi_power
+2025-08-20 21:03:43.430 INFO (SyncWorker_3) [homeassistant.loader] Loaded aurora from homeassistant.components.aurora
+2025-08-20 21:03:43.431 INFO (SyncWorker_3) [homeassistant.loader] Loaded holiday from homeassistant.components.holiday
+2025-08-20 21:03:43.431 INFO (SyncWorker_3) [homeassistant.loader] Loaded trend from homeassistant.components.trend
+2025-08-20 21:03:43.432 INFO (SyncWorker_3) [homeassistant.loader] Loaded growatt_server from homeassistant.components.growatt_server
+2025-08-20 21:03:43.433 INFO (SyncWorker_3) [homeassistant.loader] Loaded min_max from homeassistant.components.min_max
+2025-08-20 21:03:43.433 INFO (SyncWorker_3) [homeassistant.loader] Loaded group from homeassistant.components.group
+2025-08-20 21:03:43.434 INFO (SyncWorker_3) [homeassistant.loader] Loaded moehlenhoff_alpha2 from homeassistant.components.moehlenhoff_alpha2
+2025-08-20 21:03:43.435 INFO (SyncWorker_3) [homeassistant.loader] Loaded remote_calendar from homeassistant.components.remote_calendar
+2025-08-20 21:03:43.435 INFO (SyncWorker_3) [homeassistant.loader] Loaded history_stats from homeassistant.components.history_stats
+2025-08-20 21:03:43.436 INFO (SyncWorker_3) [homeassistant.loader] Loaded google_travel_time from homeassistant.components.google_travel_time
+2025-08-20 21:03:43.437 INFO (SyncWorker_3) [homeassistant.loader] Loaded utility_meter from homeassistant.components.utility_meter
+2025-08-20 21:03:43.438 INFO (SyncWorker_3) [homeassistant.loader] Loaded alert from homeassistant.components.alert
+2025-08-20 21:03:43.438 INFO (SyncWorker_3) [homeassistant.loader] Loaded statistics from homeassistant.components.statistics
+2025-08-20 21:03:43.439 INFO (SyncWorker_3) [homeassistant.loader] Loaded vegehub from homeassistant.components.vegehub
+2025-08-20 21:03:43.439 INFO (SyncWorker_3) [homeassistant.loader] Loaded random from homeassistant.components.random
+2025-08-20 21:03:43.440 INFO (SyncWorker_3) [homeassistant.loader] Loaded generic_hygrostat from homeassistant.components.generic_hygrostat
+2025-08-20 21:03:43.440 INFO (SyncWorker_3) [homeassistant.loader] Loaded cert_expiry from homeassistant.components.cert_expiry
+2025-08-20 21:03:43.441 INFO (SyncWorker_3) [homeassistant.loader] Loaded filter from homeassistant.components.filter
+2025-08-20 21:03:49.552 DEBUG (MainThread) [custom_components.tylo.hub] Testing connection to localhost on mock
+2025-08-20 21:03:49.552 INFO (MainThread) [custom_components.tylo.protocol] Mock mode enabled - simulating connection to mock
+2025-08-20 21:03:49.552 INFO (MainThread) [custom_components.tylo.hub] Successfully connected to sauna controller
+2025-08-20 21:03:49.552 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial closed
+2025-08-20 21:03:49.552 INFO (MainThread) [custom_components.tylo.protocol] Disconnected from mock
+2025-08-20 21:03:49.552 INFO (MainThread) [custom_components.tylo.protocol] Mock mode enabled - simulating connection to mock
+2025-08-20 21:03:49.552 INFO (MainThread) [custom_components.tylo.protocol] Starting packet monitoring
+2025-08-20 21:03:49.553 INFO (MainThread) [custom_components.tylo.hub] Successfully initialized and started monitoring
+2025-08-20 21:03:49.553 INFO (MainThread) [homeassistant.components.switch] Setting up tylo.switch
+2025-08-20 21:03:49.553 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.tylo entity: switch.tylo_sauna_heater
+2025-08-20 21:03:49.553 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new switch.tylo entity: switch.tylo_sauna_light
+2025-08-20 21:03:49.554 INFO (MainThread) [homeassistant.components.sensor] Setting up tylo.sensor
+2025-08-20 21:03:49.554 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_temperature_actual
+2025-08-20 21:03:49.554 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_temperature_set
+2025-08-20 21:03:49.555 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_bathing_time
+2025-08-20 21:03:49.555 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new sensor.tylo entity: sensor.tylo_sauna_uptime
+2025-08-20 21:03:49.555 INFO (MainThread) [homeassistant.components.binary_sensor] Setting up tylo.binary_sensor
+2025-08-20 21:03:49.555 INFO (MainThread) [homeassistant.helpers.entity_registry] Registered new binary_sensor.tylo entity: binary_sensor.tylo_sauna_ready
+2025-08-20 21:05:25.446 DEBUG (MainThread) [custom_components.tylo.hub] Toggling heater (current: False, target: True)
+2025-08-20 21:05:25.446 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial write: 984007700000000001820a9c
+2025-08-20 21:05:25.446 DEBUG (MainThread) [custom_components.tylo.protocol] Sent command 0x7000 with data 0x00000001
+2025-08-20 21:05:30.374 DEBUG (MainThread) [custom_components.tylo.hub] Toggling heater (current: False, target: True)
+2025-08-20 21:05:30.374 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial write: 984007700000000001820a9c
+2025-08-20 21:05:30.374 DEBUG (MainThread) [custom_components.tylo.protocol] Sent command 0x7000 with data 0x00000001
+2025-08-20 21:05:33.266 DEBUG (MainThread) [custom_components.tylo.hub] Toggling light (current: False, target: True)
+2025-08-20 21:05:33.266 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial write: 984007700000000002a3b89c
+2025-08-20 21:05:33.266 DEBUG (MainThread) [custom_components.tylo.protocol] Sent command 0x7000 with data 0x00000002
+2025-08-20 21:05:39.097 DEBUG (MainThread) [custom_components.tylo.hub] Toggling light (current: False, target: True)
+2025-08-20 21:05:39.097 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial write: 984007700000000002a3b89c
+2025-08-20 21:05:39.097 DEBUG (MainThread) [custom_components.tylo.protocol] Sent command 0x7000 with data 0x00000002
+2025-08-20 21:06:06.485 DEBUG (MainThread) [custom_components.tylo.hub] Closing hub connection
+2025-08-20 21:06:06.485 DEBUG (MainThread) [custom_components.tylo.protocol] Mock serial closed
+2025-08-20 21:06:06.485 INFO (MainThread) [custom_components.tylo.protocol] Disconnected from mock
+2025-08-20 21:06:06.485 DEBUG (MainThread) [custom_components.tylo.hub] Hub connection closed
+2025-08-20 21:06:39.132 DEBUG (MainThread) [custom_components.tylo.hub] Testing connection to localhost on COM6
+2025-08-20 21:06:39.132 ERROR (MainThread) [custom_components.tylo.protocol] Failed to connect to COM6: [Errno 2] could not open port COM6: [Errno 2] No such file or directory: 'COM6'
+2025-08-20 21:07:56.678 INFO (Recorder) [homeassistant.components.recorder.pool.RecorderPool] Pool recreating

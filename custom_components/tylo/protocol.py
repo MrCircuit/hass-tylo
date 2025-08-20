@@ -120,6 +120,9 @@ class TyloProtocolHandler:
         # Track unique CRC errors for debugging
         self._crc_error_cache = set()
         
+        # Frame buffer for assembling complete frames
+        self._frame_buffer = bytearray()
+        
         # Current state
         self._temperature_actual: float | None = None
         self._temperature_set: float | None = None
@@ -221,20 +224,23 @@ class TyloProtocolHandler:
                     await asyncio.sleep(1.0)
                     continue
                     
-                # Read until EOF marker with timeout protection using executor
+                # Read small chunks and buffer them
                 try:
-                    # Run the blocking read_until in executor to avoid blocking the event loop
+                    # Run small reads in executor to avoid blocking the event loop
                     loop = asyncio.get_event_loop()
-                    frame = await loop.run_in_executor(
+                    chunk = await loop.run_in_executor(
                         None, 
-                        self._serial.read_until, 
-                        bytes.fromhex('9c')
+                        self._serial.read,
+                        16  # Read small chunks
                     )
                     
-                    if len(frame) > 0:
-                        _LOGGER.debug("Received raw data: %s", frame.hex())
-                        # Split multiple concatenated frames
-                        await self._process_raw_data(frame)
+                    if len(chunk) > 0:
+                        # Add to frame buffer
+                        self._frame_buffer.extend(chunk)
+                        _LOGGER.debug("Added %d bytes to buffer, buffer size: %d", len(chunk), len(self._frame_buffer))
+                        
+                        # Process any complete frames in the buffer
+                        await self._process_buffer()
                     else:
                         # No data received, small sleep to prevent busy loop
                         await asyncio.sleep(0.1)
@@ -295,6 +301,57 @@ class TyloProtocolHandler:
         
         escaped.append(0x9c)  # EOF
         return bytes(escaped)
+
+    async def _process_buffer(self) -> None:
+        """Process the frame buffer and extract complete frames."""
+        try:
+            while True:
+                # Look for SOF marker (0x98) in buffer
+                sof_pos = self._frame_buffer.find(0x98)
+                if sof_pos == -1:
+                    # No SOF marker, clear buffer of any junk
+                    self._frame_buffer.clear()
+                    break
+                
+                # Remove any data before SOF
+                if sof_pos > 0:
+                    _LOGGER.debug("Removing %d bytes of junk before SOF", sof_pos)
+                    self._frame_buffer = self._frame_buffer[sof_pos:]
+                
+                # Now find EOF marker (0x9c) after SOF, respecting escape sequences
+                frame_end = self._find_frame_end(self._frame_buffer)
+                if frame_end == -1:
+                    # Incomplete frame, wait for more data
+                    break
+                
+                # Extract complete frame
+                frame = bytes(self._frame_buffer[:frame_end + 1])
+                self._frame_buffer = self._frame_buffer[frame_end + 1:]
+                
+                _LOGGER.debug("Extracted complete frame: %s", frame.hex())
+                await self._handle_frame(frame)
+                
+        except Exception as err:
+            _LOGGER.error("Error processing buffer: %s", err)
+
+    def _find_frame_end(self, buffer: bytearray) -> int:
+        """Find the end of frame marker, respecting escape sequences."""
+        i = 1  # Start after SOF
+        in_escape = False
+        
+        while i < len(buffer):
+            if in_escape:
+                in_escape = False
+                i += 1
+            elif buffer[i] == 0x91:
+                in_escape = True
+                i += 1
+            elif buffer[i] == 0x9c:
+                return i  # Found EOF
+            else:
+                i += 1
+        
+        return -1  # EOF not found
 
     async def _process_raw_data(self, data: bytes) -> None:
         """Process raw data and extract individual frames."""

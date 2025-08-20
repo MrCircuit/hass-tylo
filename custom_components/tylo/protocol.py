@@ -117,6 +117,9 @@ class TyloProtocolHandler:
             optimized=True
         )
         
+        # Track unique CRC errors for debugging
+        self._crc_error_cache = set()
+        
         # Current state
         self._temperature_actual: float | None = None
         self._temperature_set: float | None = None
@@ -296,27 +299,38 @@ class TyloProtocolHandler:
     async def _process_raw_data(self, data: bytes) -> None:
         """Process raw data and extract individual frames."""
         try:
-            # Find all frame boundaries (SOF = 0x98, EOF = 0x9c)
+            # Process data to find complete frames considering escape sequences
             frames = []
-            start = 0
+            i = 0
             
-            while start < len(data):
-                # Find next SOF marker
-                sof_pos = data.find(0x98, start)
-                if sof_pos == -1:
-                    break
+            while i < len(data):
+                # Look for SOF marker (0x98)
+                if data[i] == 0x98:
+                    # Start of frame found, now find the end
+                    frame_start = i
+                    i += 1
+                    in_escape = False
                     
-                # Find corresponding EOF marker
-                eof_pos = data.find(0x9c, sof_pos + 1)
-                if eof_pos == -1:
-                    break
-                    
-                # Extract complete frame including SOF and EOF
-                frame = data[sof_pos:eof_pos + 1]
-                if len(frame) >= 4:  # Minimum frame size
-                    frames.append(frame)
-                    
-                start = eof_pos + 1
+                    while i < len(data):
+                        if in_escape:
+                            # Skip escaped byte
+                            in_escape = False
+                            i += 1
+                        elif data[i] == 0x91:
+                            # Escape sequence
+                            in_escape = True
+                            i += 1
+                        elif data[i] == 0x9c:
+                            # End of frame found
+                            frame = data[frame_start:i + 1]
+                            if len(frame) >= 4:  # Minimum frame size
+                                frames.append(frame)
+                            i += 1
+                            break
+                        else:
+                            i += 1
+                else:
+                    i += 1
             
             # Process each complete frame
             for frame in frames:
@@ -348,15 +362,20 @@ class TyloProtocolHandler:
                                frame.hex(), packet.hex(), received_crc)
                 await self._handle_packet(packet[:-2])  # Remove CRC
             else:
-                # Debug CRC calculation
+                # Debug CRC calculation (only log unique errors)
                 if len(packet) >= 2:
                     data_part = packet[:-2]
                     received_crc = int.from_bytes(packet[-2:], 'big')
                     calculated_crc = self._crc_calc.checksum(data_part)
-                    _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - received CRC: 0x%04x, calculated: 0x%04x", 
-                                  frame.hex(), packet.hex(), received_crc, calculated_crc)
+                    error_key = (packet.hex(), received_crc, calculated_crc)
+                    if error_key not in self._crc_error_cache:
+                        self._crc_error_cache.add(error_key)
+                        _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - received CRC: 0x%04x, calculated: 0x%04x", 
+                                      frame.hex(), packet.hex(), received_crc, calculated_crc)
                 else:
-                    _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - packet too short", frame.hex(), packet.hex())
+                    if packet.hex() not in self._crc_error_cache:
+                        self._crc_error_cache.add(packet.hex())
+                        _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - packet too short", frame.hex(), packet.hex())
         except Exception as err:
             _LOGGER.error("Error handling frame %s: %s", frame.hex(), err)
             import traceback

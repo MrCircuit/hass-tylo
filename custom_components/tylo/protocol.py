@@ -402,17 +402,6 @@ class TyloProtocolHandler:
         try:
             _LOGGER.debug("Processing frame: %s", frame.hex())
             
-            # Test with known good frame for CRC debugging
-            if frame.hex() == "9840066d3a9c":
-                _LOGGER.error("FOUND KNOWN GOOD FRAME: %s", frame.hex())
-                packet = self._unescape_frame(frame)
-                _LOGGER.error("Known good unescaped: %s", packet.hex())
-                if len(packet) >= 2:
-                    data_part = packet[:-2]
-                    received_crc = int.from_bytes(packet[-2:], 'big')
-                    calculated_crc = self._crc_calc.checksum(data_part)
-                    _LOGGER.error("Known good CRC test - data: %s, received: 0x%04x, calculated: 0x%04x", 
-                                 data_part.hex(), received_crc, calculated_crc)
             
             packet = self._unescape_frame(frame)
             _LOGGER.debug("Unescaped packet: %s", packet.hex())
@@ -421,35 +410,22 @@ class TyloProtocolHandler:
                 _LOGGER.warning("Packet too short: %s", packet.hex())
                 return
                 
-            crc_valid = self._validate_crc(packet)
-            if crc_valid:
-                # Temporary: log good frames too for analysis
-                if len(packet) >= 2:
-                    data_part = packet[:-2]
-                    received_crc = int.from_bytes(packet[-2:], 'big')
-                    calculated_crc = self._crc_calc.checksum(data_part)
-                    _LOGGER.info("CRC validation PASSED for frame: %s (unescaped: %s) - CRC: 0x%04x", 
-                               frame.hex(), packet.hex(), received_crc)
+            if self._validate_crc(packet):
+                _LOGGER.debug("CRC validation passed for frame: %s", frame.hex())
                 await self._handle_packet(packet[:-2])  # Remove CRC
             else:
-                # TEMPORARY: Process frame anyway to see what data looks like
-                _LOGGER.debug("Processing frame with CRC error anyway for analysis")
-                if len(packet) >= 2:
-                    await self._handle_packet(packet[:-2])  # Remove CRC
-                # Debug CRC calculation (only log unique errors)
+                # Log CRC errors less frequently to reduce noise
                 if len(packet) >= 2:
                     data_part = packet[:-2]
                     received_crc = int.from_bytes(packet[-2:], 'big')
                     calculated_crc = self._crc_calc.checksum(data_part)
-                    error_key = (packet.hex(), received_crc, calculated_crc)
+                    error_key = data_part.hex()  # Only check data part for uniqueness
                     if error_key not in self._crc_error_cache:
                         self._crc_error_cache.add(error_key)
-                        _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - received CRC: 0x%04x, calculated: 0x%04x", 
-                                      frame.hex(), packet.hex(), received_crc, calculated_crc)
+                        _LOGGER.debug("CRC error in frame: %s (unescaped: %s) - received CRC: 0x%04x, calculated: 0x%04x", 
+                                     frame.hex(), packet.hex(), received_crc, calculated_crc)
                 else:
-                    if packet.hex() not in self._crc_error_cache:
-                        self._crc_error_cache.add(packet.hex())
-                        _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - packet too short", frame.hex(), packet.hex())
+                    _LOGGER.debug("CRC error in frame: %s (unescaped: %s) - packet too short", frame.hex(), packet.hex())
         except Exception as err:
             _LOGGER.error("Error handling frame %s: %s", frame.hex(), err)
             import traceback

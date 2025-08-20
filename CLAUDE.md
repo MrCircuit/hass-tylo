@@ -76,3 +76,65 @@ The RS485 implementation in `protocol.py` contains extensive protocol documentat
 - Switch controls send actual RS485 commands
 - Real-time monitoring of sauna state
 - Automatic entity updates on protocol state changes
+
+## Critical Implementation Details
+
+### Async Serial Communication
+**CRITICAL**: The integration uses `loop.run_in_executor()` to run blocking serial operations in separate threads to prevent Home Assistant event loop blocking. This was essential to fix the integration hanging issue.
+
+```python
+# Correct approach - run blocking serial reads in executor
+frame = await loop.run_in_executor(None, self._serial.read, 16)
+```
+
+**Never use blocking serial calls directly in async methods** - this will freeze the entire Home Assistant instance.
+
+### Frame Processing Architecture
+The protocol uses a sophisticated buffering system to handle RS485 data:
+
+1. **Small chunk reads** (16 bytes) to avoid concatenated frames
+2. **Frame buffer** that accumulates data gradually
+3. **Escape sequence aware** frame boundary detection
+4. **Individual frame extraction** with proper SOF/EOF handling
+
+This approach prevents the frame concatenation issues that caused CRC errors.
+
+### CRC Validation
+**VERIFIED WORKING**: The CRC calculation is correct:
+- **Polynomial**: 0x90d9 
+- **Parameters**: 16-bit, init 0xffff, no XOR, no reversal
+- **Validation**: Frame `9840066d3a9c` validates perfectly (data: `4006`, CRC: `0x6d3a`)
+
+### Testing Setup
+**Production Testing**: Docker containers cannot access Windows COM ports directly. For real hardware testing:
+
+1. **Mock Mode**: Use "Mock/Test mode" in config flow for safe testing
+2. **Real Hardware**: Install directly to main Home Assistant instance or use WSL2 with USB passthrough
+3. **Test Environment**: Created Docker + Python virtual environment scripts for safe testing
+
+### Known Issues & Solutions
+1. **Integration Hanging**: Fixed by using executor for serial reads
+2. **CRC Errors**: Mix of good and corrupted frames is normal - good frames process correctly
+3. **Frame Concatenation**: Fixed by chunked reading and proper buffer management
+4. **Config Flow Host Field**: Removed unnecessary CONF_HOST for serial-only setup
+
+### Protocol Communication
+**Frame Structure**:
+- SOF: 0x98
+- Data: Address + Command + Payload  
+- CRC: 16-bit checksum
+- EOF: 0x9c
+- Escaping: 0x91 + modified byte
+
+**Example Valid Frame**: `9840066d3a9c`
+- SOF: 0x98
+- Address: 0x40
+- Command: 0x0060 (temperature reading)
+- CRC: 0x6d3a (validates correctly)
+- EOF: 0x9c
+
+### Troubleshooting
+- **No COM ports in Docker**: Expected - use mock mode or install to main HA
+- **CRC warnings**: Normal - corrupted frames mixed with good ones
+- **Integration hangs**: Ensure executor is used for all blocking serial operations
+- **No entities**: Check serial device mapping and permissions

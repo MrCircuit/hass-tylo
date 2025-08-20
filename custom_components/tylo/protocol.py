@@ -209,11 +209,13 @@ class TyloProtocolHandler:
 
     async def start_monitoring(self) -> None:
         """Start monitoring for incoming packets."""
+        _LOGGER.error("MONITOR STEP 1: start_monitoring called")
         if not self.is_connected:
+            _LOGGER.error("MONITOR ERROR: Not connected to serial port")
             raise RuntimeError("Not connected to serial port")
         
         self._running = True
-        _LOGGER.info("Starting packet monitoring")
+        _LOGGER.error("MONITOR STEP 2: Starting packet monitoring, entering main loop")
         
         while self._running and self.is_connected:
             try:

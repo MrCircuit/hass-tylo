@@ -98,16 +98,22 @@ class Hub:
     async def initialize(self) -> bool:
         """Initialize and start monitoring the sauna controller."""
         try:
+            _LOGGER.error("INIT STEP 1: Starting initialize")
             success = await self._protocol.connect()
+            _LOGGER.error("INIT STEP 2: Connect returned: %s", success)
             if success:
+                _LOGGER.error("INIT STEP 3: About to start monitoring task")
                 # Start monitoring in background
                 self._monitoring_task = self._hass.async_create_task(
                     self._protocol.start_monitoring()
                 )
-                _LOGGER.info("Successfully initialized and started monitoring")
+                _LOGGER.error("INIT STEP 4: Monitoring task created successfully")
+            _LOGGER.error("INIT STEP 5: Returning success: %s", success)
             return success
         except Exception as err:
-            _LOGGER.error("Initialization failed: %s", err)
+            _LOGGER.error("INIT ERROR: Initialization failed: %s", err)
+            import traceback
+            _LOGGER.error("INIT ERROR: Traceback: %s", traceback.format_exc())
             return False
 
     async def set_heater(self, state: bool) -> None:

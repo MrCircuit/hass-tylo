@@ -176,26 +176,22 @@ class TyloProtocolHandler:
 
     async def connect(self) -> bool:
         """Connect to the serial port."""
-        _LOGGER.error("PROTOCOL CONNECT: Starting connect to %s, mock_mode=%s", self._port, self._mock_mode)
-        
         if self._mock_mode:
-            _LOGGER.error("PROTOCOL CONNECT: Mock mode - creating MockSerial")
+            _LOGGER.info("Mock mode enabled - simulating connection to %s", self._port)
             self._serial = MockSerial()
-            _LOGGER.error("PROTOCOL CONNECT: Mock mode setup complete")
             return True
             
         try:
-            _LOGGER.error("PROTOCOL CONNECT: About to create serial.Serial for %s", self._port)
             self._serial = serial.Serial(
                 self._port,
                 self._baudrate,
                 timeout=1,
                 parity=serial.PARITY_EVEN
             )
-            _LOGGER.error("PROTOCOL CONNECT: Serial port opened successfully")
+            _LOGGER.info("Connected to %s at %d baud", self._port, self._baudrate)
             return True
         except Exception as err:
-            _LOGGER.error("PROTOCOL CONNECT: Failed to connect to %s: %s", self._port, err)
+            _LOGGER.error("Failed to connect to %s: %s", self._port, err)
             self._serial = None
             return False
 
@@ -209,13 +205,11 @@ class TyloProtocolHandler:
 
     async def start_monitoring(self) -> None:
         """Start monitoring for incoming packets."""
-        _LOGGER.error("MONITOR STEP 1: start_monitoring called")
         if not self.is_connected:
-            _LOGGER.error("MONITOR ERROR: Not connected to serial port")
             raise RuntimeError("Not connected to serial port")
         
         self._running = True
-        _LOGGER.error("MONITOR STEP 2: Starting packet monitoring, entering main loop")
+        _LOGGER.info("Starting packet monitoring")
         
         while self._running and self.is_connected:
             try:
@@ -226,7 +220,6 @@ class TyloProtocolHandler:
                     
                 # Read until EOF marker with timeout protection using executor
                 try:
-                    _LOGGER.error("MONITOR STEP 3: About to read from serial port")
                     # Run the blocking read_until in executor to avoid blocking the event loop
                     loop = asyncio.get_event_loop()
                     frame = await loop.run_in_executor(
@@ -234,7 +227,6 @@ class TyloProtocolHandler:
                         self._serial.read_until, 
                         bytes.fromhex('9c')
                     )
-                    _LOGGER.error("MONITOR STEP 4: Read completed, got %d bytes", len(frame))
                     
                     if len(frame) > 0:
                         _LOGGER.debug("Received frame: %s", frame.hex())

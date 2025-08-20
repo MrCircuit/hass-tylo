@@ -76,44 +76,30 @@ class Hub:
     async def test_connection(self) -> bool:
         """Test connectivity to the sauna controller."""
         try:
-            _LOGGER.error("STEP 1: Starting test_connection to %s on %s", self._host, self._port)
-            _LOGGER.error("STEP 2: About to call protocol.connect()")
+            _LOGGER.debug("Testing connection to %s on %s", self._host, self._port)
             success = await self._protocol.connect()
-            _LOGGER.error("STEP 3: protocol.connect() returned: %s", success)
             if success:
-                _LOGGER.error("STEP 4: Connection successful, about to disconnect")
+                _LOGGER.info("Successfully connected to sauna controller")
                 # Disconnect after test - we'll reconnect when integration is setup
                 await self._protocol.disconnect()
-                _LOGGER.error("STEP 5: Disconnection completed")
-            else:
-                _LOGGER.error("STEP 4: Connection failed")
-            _LOGGER.error("STEP 6: Returning success: %s", success)
             return success
         except Exception as err:
-            _LOGGER.error("STEP ERROR: Connection test failed: %s", err)
-            import traceback
-            _LOGGER.error("STEP ERROR: Traceback: %s", traceback.format_exc())
+            _LOGGER.error("Connection test failed: %s", err)
             return False
 
     async def initialize(self) -> bool:
         """Initialize and start monitoring the sauna controller."""
         try:
-            _LOGGER.error("INIT STEP 1: Starting initialize")
             success = await self._protocol.connect()
-            _LOGGER.error("INIT STEP 2: Connect returned: %s", success)
             if success:
-                _LOGGER.error("INIT STEP 3: About to start monitoring task")
                 # Start monitoring in background
                 self._monitoring_task = self._hass.async_create_task(
                     self._protocol.start_monitoring()
                 )
-                _LOGGER.error("INIT STEP 4: Monitoring task created successfully")
-            _LOGGER.error("INIT STEP 5: Returning success: %s", success)
+                _LOGGER.info("Successfully initialized and started monitoring")
             return success
         except Exception as err:
-            _LOGGER.error("INIT ERROR: Initialization failed: %s", err)
-            import traceback
-            _LOGGER.error("INIT ERROR: Traceback: %s", traceback.format_exc())
+            _LOGGER.error("Initialization failed: %s", err)
             return False
 
     async def set_heater(self, state: bool) -> None:

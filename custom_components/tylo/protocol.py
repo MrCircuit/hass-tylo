@@ -224,9 +224,18 @@ class TyloProtocolHandler:
                     await asyncio.sleep(1.0)
                     continue
                     
-                # Read until EOF marker with timeout protection
+                # Read until EOF marker with timeout protection using executor
                 try:
-                    frame = self._serial.read_until(bytes.fromhex('9c'))
+                    _LOGGER.error("MONITOR STEP 3: About to read from serial port")
+                    # Run the blocking read_until in executor to avoid blocking the event loop
+                    loop = asyncio.get_event_loop()
+                    frame = await loop.run_in_executor(
+                        None, 
+                        self._serial.read_until, 
+                        bytes.fromhex('9c')
+                    )
+                    _LOGGER.error("MONITOR STEP 4: Read completed, got %d bytes", len(frame))
+                    
                     if len(frame) > 0:
                         _LOGGER.debug("Received frame: %s", frame.hex())
                         if frame[0] == 0x98:  # SOF marker

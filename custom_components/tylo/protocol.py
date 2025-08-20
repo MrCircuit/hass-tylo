@@ -339,11 +339,24 @@ class TyloProtocolHandler:
                 return
                 
             if self._validate_crc(packet):
-                _LOGGER.debug("CRC validation passed for frame: %s", frame.hex())
+                # Temporary: log good frames too for analysis
+                if len(packet) >= 2:
+                    data_part = packet[:-2]
+                    received_crc = int.from_bytes(packet[-2:], 'big')
+                    calculated_crc = self._crc_calc.checksum(data_part)
+                    _LOGGER.info("CRC validation PASSED for frame: %s (unescaped: %s) - CRC: 0x%04x", 
+                               frame.hex(), packet.hex(), received_crc)
                 await self._handle_packet(packet[:-2])  # Remove CRC
             else:
-                # Show unescaped packet for debugging
-                _LOGGER.warning("CRC error in frame: %s (unescaped: %s)", frame.hex(), packet.hex())
+                # Debug CRC calculation
+                if len(packet) >= 2:
+                    data_part = packet[:-2]
+                    received_crc = int.from_bytes(packet[-2:], 'big')
+                    calculated_crc = self._crc_calc.checksum(data_part)
+                    _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - received CRC: 0x%04x, calculated: 0x%04x", 
+                                  frame.hex(), packet.hex(), received_crc, calculated_crc)
+                else:
+                    _LOGGER.warning("CRC error in frame: %s (unescaped: %s) - packet too short", frame.hex(), packet.hex())
         except Exception as err:
             _LOGGER.error("Error handling frame %s: %s", frame.hex(), err)
             import traceback
